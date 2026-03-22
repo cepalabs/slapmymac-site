@@ -22,11 +22,17 @@
   --glow: rgba(230,62,109,0.1); --shadow: rgba(0,0,0,0.06);
   --bg-glow1: #FBBDD6; --bg-glow2: #FDE4EE;
 }
-@media(prefers-color-scheme:dark){:root{
+html[data-theme="dark"] {
   --bg:#111110;--bg2:#1a1918;--card:#1e1e1c;--text:#edece8;--mid:#a8a69f;--faint:#6b695f;--border:#2a2928;
   --pink:#f06292;--pink-soft:rgba(240,98,146,0.12);--purple:#a78bfa;--purple-soft:rgba(167,139,250,0.1);
   --green:#4ade80;--green-soft:rgba(74,222,128,0.12);--glow:rgba(240,98,146,0.08);--shadow:rgba(0,0,0,0.3);
-  --bg-glow1: #2a1520; --bg-glow2: #1a1215;
+  --bg-glow1:#2a1520;--bg-glow2:#1a1215;
+}
+@media(prefers-color-scheme:dark){html:not([data-theme="light"]){
+  --bg:#111110;--bg2:#1a1918;--card:#1e1e1c;--text:#edece8;--mid:#a8a69f;--faint:#6b695f;--border:#2a2928;
+  --pink:#f06292;--pink-soft:rgba(240,98,146,0.12);--purple:#a78bfa;--purple-soft:rgba(167,139,250,0.1);
+  --green:#4ade80;--green-soft:rgba(74,222,128,0.12);--glow:rgba(240,98,146,0.08);--shadow:rgba(0,0,0,0.3);
+  --bg-glow1:#2a1520;--bg-glow2:#1a1215;
 }}
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -43,6 +49,8 @@ a{color:inherit}img{max-width:100%;display:block}
 .nav-r a:hover{color:var(--text)}
 .nav-dl{display:inline-flex;align-items:center;gap:.4rem;padding:.4rem 1rem;background:var(--text);color:var(--bg);border-radius:8px;text-decoration:none;font-size:.83rem;font-weight:600;transition:opacity .15s}
 .nav-dl:hover{opacity:.85}
+.theme-toggle{background:none;border:1px solid var(--border);border-radius:8px;padding:.3rem .5rem;cursor:pointer;font-size:1rem;line-height:1;transition:border-color .2s}
+.theme-toggle:hover{border-color:var(--pink)}
 
 /* HERO */
 .hero{padding:9rem 2rem 4rem;max-width:780px;margin:0 auto;text-align:center}
@@ -171,6 +179,7 @@ footer a:hover{color:var(--mid)}
   <div class="nav-r">
     <a href="#faq">FAQ</a>
     <a href="https://polar.sh/cepalabs/portal" target="_blank">Recover Key</a>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">☀️</button>
     <a href="https://github.com/cepalabs/SlapMyMac/releases/download/v1.0.0/SlapMyMac.dmg" class="nav-dl">↓ Download</a>
   </div>
 </nav>
@@ -388,6 +397,37 @@ footer a:hover{color:var(--mid)}
 </footer>
 
 <script>
+// Theme toggle
+function toggleTheme() {
+  const html = document.documentElement;
+  const btn = document.querySelector('.theme-toggle');
+  const current = html.getAttribute('data-theme');
+  const isDark = current === 'dark' || (!current && window.matchMedia('(prefers-color-scheme: dark)').matches);
+
+  if (isDark) {
+    html.setAttribute('data-theme', 'light');
+    btn.textContent = '🌙';
+    localStorage.setItem('theme', 'light');
+  } else {
+    html.setAttribute('data-theme', 'dark');
+    btn.textContent = '☀️';
+    localStorage.setItem('theme', 'dark');
+  }
+}
+
+// Apply saved theme on load
+(function() {
+  const saved = localStorage.getItem('theme');
+  const btn = document.querySelector('.theme-toggle');
+  if (saved) {
+    document.documentElement.setAttribute('data-theme', saved);
+    btn.textContent = saved === 'dark' ? '☀️' : '🌙';
+  } else {
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    btn.textContent = prefersDark ? '☀️' : '🌙';
+  }
+})();
+
 // Sound preview
 let currentAudio = null;
 function playSound(id, btn) {

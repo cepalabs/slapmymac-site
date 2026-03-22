@@ -7,25 +7,51 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: -apple-system, sans-serif; background: #0a0a0f; color: #fff; display: flex; align-items: center; justify-content: center; min-height: 100vh; text-align: center; padding: 2rem; }
-        .container { max-width: 500px; }
-        h1 { font-size: 2.5rem; margin-bottom: 1rem; }
-        p { color: #9ca3af; font-size: 1.1rem; line-height: 1.6; margin-bottom: 1.5rem; }
-        .key-info { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; }
-        .key-info p { color: #d1d5db; margin-bottom: 0.5rem; }
-        a { color: #ec4899; text-decoration: none; }
+        .container { max-width: 520px; }
+        h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
+        .subtitle { color: #9ca3af; font-size: 1.1rem; margin-bottom: 2rem; }
+        .steps { text-align: left; margin-bottom: 2rem; }
+        .step { display: flex; gap: 1rem; align-items: flex-start; padding: 1rem; border-radius: 12px; margin-bottom: 0.75rem; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); }
+        .step-num { background: #ec4899; color: #fff; font-weight: 700; font-size: 0.9rem; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+        .step-text { color: #d1d5db; font-size: 1.05rem; line-height: 1.5; }
+        .step-text strong { color: #fff; }
+        .step-text .hint { color: #6b7280; font-size: 0.9rem; display: block; margin-top: 4px; }
+        .help { color: #6b7280; font-size: 0.9rem; margin-top: 1.5rem; }
+        .help a { color: #ec4899; text-decoration: none; }
+        a.back { color: #ec4899; text-decoration: none; display: inline-block; margin-top: 1.5rem; }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>🎉 Thank you!</h1>
-        <p>Your license key has been sent to your email.</p>
-        <div class="key-info">
-            <p>1. Open SlapMyMac</p>
-            <p>2. Click "Activate License..." in the menu bar</p>
-            <p>3. Paste your license key</p>
-            <p>4. Start slapping! 👋</p>
+        <h1>Payment successful!</h1>
+        <p class="subtitle">You're almost there — just one step to activate.</p>
+
+        <div class="steps">
+            <div class="step">
+                <div class="step-num">1</div>
+                <div class="step-text">
+                    <strong>Check your email</strong> for a message from Polar
+                    <span class="hint">Open the email and click the link to view your license key</span>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-num">2</div>
+                <div class="step-text">
+                    <strong>Copy your license key</strong> from the Polar page
+                    <span class="hint">It looks like: SLAP-XXXX-XXXX-XXXX-XXXX</span>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-num">3</div>
+                <div class="step-text">
+                    <strong>Paste it in SlapMyMac</strong> and click Activate
+                    <span class="hint">The license field is in the onboarding window or under "Activate License" in the menu bar</span>
+                </div>
+            </div>
         </div>
-        <p><a href="/">← Back to SlapMyMac</a></p>
+
+        <p class="help">Key not arriving? Check your spam folder or <a href="https://polar.sh/cepalabs/portal">recover it here</a>.</p>
+        <a class="back" href="/">← Back to SlapMyMac</a>
     </div>
 </body>
 </html>

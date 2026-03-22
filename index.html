@@ -4,1065 +4,371 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SlapMyMac — Your MacBook Has Feelings</title>
-<meta name="description" content="Slap your MacBook. It yells back. Move the lid — it creaks, revs, plays violin. The only slap app with lid sounds. Download free, $2.99 to unlock.">
+<meta name="description" content="Slap your MacBook. It yells back. Move the lid — it creaks, revs, plays violin. The only slap app with lid sounds.">
 <meta property="og:title" content="SlapMyMac — Your MacBook Has Feelings">
-<meta property="og:description" content="Slap your MacBook. It talks back. Move the lid. It makes sounds. Yes, really.">
+<meta property="og:description" content="Slap your MacBook. It talks back. Move the lid. It makes sounds. $2.99 one-time.">
 <meta property="og:image" content="https://slapmymac.com/icon.png">
 <meta property="og:url" content="https://slapmymac.com">
-<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/png" href="/icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
 <style>
-/* ═══════════════════════════════════════
-   TOKENS
-   ═══════════════════════════════════════ */
 :root {
-  --font-display: 'DM Serif Display', Georgia, serif;
-  --font-body: 'DM Sans', system-ui, sans-serif;
-
-  /* light (default) */
-  --bg: #FAF7F2;
-  --bg-alt: #F0EBE3;
-  --bg-card: #FFFFFF;
-  --text: #1A1A1A;
-  --text-mid: #555550;
-  --text-faint: #9C9890;
-  --accent: #E63E6D;
-  --accent-soft: #FCE8EF;
-  --accent2: #6C3CE0;
-  --accent2-soft: #EDE5FF;
-  --border: #E4DFD8;
-  --shadow: rgba(0,0,0,0.06);
-  --shadow-lg: rgba(0,0,0,0.10);
-  --glow: rgba(230, 62, 109, 0.12);
-  --green: #16a34a;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #111110;
-    --bg-alt: #1A1918;
-    --bg-card: #1E1E1C;
-    --text: #EDECE8;
-    --text-mid: #A8A69F;
-    --text-faint: #6B695F;
-    --accent: #F06292;
-    --accent-soft: rgba(240,98,146,0.12);
-    --accent2: #A78BFA;
-    --accent2-soft: rgba(167,139,250,0.10);
-    --border: #2A2928;
-    --shadow: rgba(0,0,0,0.2);
-    --shadow-lg: rgba(0,0,0,0.4);
-    --glow: rgba(240, 98, 146, 0.08);
-    --green: #4ade80;
-  }
-}
-
-/* ═══════════════════════════════════════
-   RESET & BASE
-   ═══════════════════════════════════════ */
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
-html { scroll-behavior: smooth; }
-
-body {
-  font-family: var(--font-body);
-  background: var(--bg);
-  color: var(--text);
-  line-height: 1.65;
-  -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
-}
-
-::selection {
-  background: var(--accent);
-  color: #fff;
-}
-
-a { color: inherit; }
-img { max-width: 100%; display: block; }
-
-/* ═══════════════════════════════════════
-   NAV
-   ═══════════════════════════════════════ */
-.nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 90;
-  padding: 0.9rem 1.8rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: color-mix(in srgb, var(--bg) 85%, transparent);
-  backdrop-filter: blur(16px) saturate(1.6);
-  -webkit-backdrop-filter: blur(16px) saturate(1.6);
-  border-bottom: 1px solid var(--border);
-}
-
-.nav-brand {
-  display: flex;
-  align-items: center;
-  gap: 0.55rem;
-  text-decoration: none;
-  font-family: var(--font-display);
-  font-size: 1.15rem;
-  letter-spacing: -0.01em;
-}
-
-.nav-brand img {
-  width: 30px;
-  height: 30px;
-  border-radius: 7px;
-}
-
-.nav-right {
-  display: flex;
-  align-items: center;
-  gap: 1.3rem;
-}
-
-.nav-right a {
-  text-decoration: none;
-  font-size: 0.88rem;
-  color: var(--text-mid);
-  transition: color 0.15s;
-}
-.nav-right a:hover { color: var(--text); }
-
-.nav-dl {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.45rem 1.1rem;
-  background: var(--text);
-  color: var(--bg);
-  border-radius: 8px;
-  text-decoration: none;
-  font-size: 0.85rem;
-  font-weight: 600;
-  transition: opacity 0.15s;
-}
-.nav-dl:hover { opacity: 0.85; }
-
-/* ═══════════════════════════════════════
-   HERO
-   ═══════════════════════════════════════ */
-.hero {
-  padding: 10rem 2rem 5rem;
-  max-width: 820px;
-  margin: 0 auto;
-  position: relative;
-}
-
-.hero-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  padding: 0.35rem 0.85rem;
-  background: var(--accent-soft);
-  color: var(--accent);
-  font-size: 0.78rem;
-  font-weight: 600;
-  border-radius: 100px;
-  margin-bottom: 1.6rem;
-  letter-spacing: 0.02em;
-}
-
-.hero h1 {
-  font-family: var(--font-display);
-  font-size: clamp(2.8rem, 7vw, 4.5rem);
-  line-height: 1.08;
-  letter-spacing: -0.025em;
-  margin-bottom: 1.4rem;
-}
-
-.hero h1 em {
-  font-style: italic;
-  color: var(--accent);
-}
-
-.hero-body {
-  font-size: 1.15rem;
-  color: var(--text-mid);
-  max-width: 520px;
-  margin-bottom: 2.4rem;
-  line-height: 1.7;
-}
-
-.hero-actions {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-
-.btn-big {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.55rem;
-  padding: 0.9rem 1.8rem;
-  background: var(--text);
-  color: var(--bg);
-  border-radius: 12px;
-  text-decoration: none;
-  font-size: 1rem;
-  font-weight: 600;
-  transition: transform 0.15s, box-shadow 0.2s;
-  box-shadow: 0 2px 12px var(--shadow);
-}
-.btn-big:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 6px 24px var(--shadow-lg);
-}
-.btn-big svg { width: 18px; height: 18px; }
-
-.hero-meta {
-  display: flex;
-  flex-direction: column;
-  gap: 0.15rem;
-  font-size: 0.82rem;
-  color: var(--text-faint);
-}
-
-/* floating icon */
-.hero-float {
-  position: absolute;
-  top: 8.5rem;
-  right: -1rem;
-  width: 130px;
-  height: 130px;
-  border-radius: 30px;
-  box-shadow: 0 24px 64px var(--glow), 0 8px 24px var(--shadow);
-  animation: bob 4s ease-in-out infinite;
-  pointer-events: none;
-}
-
-@keyframes bob {
-  0%, 100% { transform: translateY(0) rotate(-3deg); }
-  50% { transform: translateY(-10px) rotate(2deg); }
-}
-
-@media (max-width: 700px) {
-  .hero-float { display: none; }
-}
-
-/* ═══════════════════════════════════════
-   MARQUEE (playful touch)
-   ═══════════════════════════════════════ */
-.marquee-wrap {
-  overflow: hidden;
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  padding: 0.7rem 0;
-  margin-top: 2rem;
-}
-
-.marquee {
-  display: flex;
-  gap: 2.5rem;
-  animation: scroll-left 22s linear infinite;
-  width: max-content;
-}
-
-.marquee span {
-  font-family: var(--font-display);
-  font-size: 1rem;
-  color: var(--text-faint);
-  white-space: nowrap;
-  letter-spacing: 0.02em;
-}
-
-.marquee span b { color: var(--accent); font-weight: 400; }
-
-@keyframes scroll-left {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-
-/* ═══════════════════════════════════════
-   SECTIONS
-   ═══════════════════════════════════════ */
-.wrap {
-  max-width: 820px;
-  margin: 0 auto;
-  padding: 0 2rem;
-}
-
-.section { padding: 5rem 0; }
-
-.section-tag {
-  font-size: 0.72rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--accent);
-  margin-bottom: 0.7rem;
-}
-
-.section h2 {
-  font-family: var(--font-display);
-  font-size: clamp(1.9rem, 4.5vw, 2.6rem);
-  line-height: 1.12;
-  letter-spacing: -0.02em;
-  margin-bottom: 0.7rem;
-}
-
-.section .lead {
-  font-size: 1.05rem;
-  color: var(--text-mid);
-  max-width: 540px;
-  margin-bottom: 2.8rem;
-}
-
-/* ═══════════════════════════════════════
-   FEATURE CARDS
-   ═══════════════════════════════════════ */
-.cards {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0.9rem;
-}
-
-@media (max-width: 600px) {
-  .cards { grid-template-columns: 1fr; }
-}
-
-.card {
-  padding: 1.6rem;
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  background: var(--bg-card);
-  transition: border-color 0.25s, box-shadow 0.25s;
-}
-
-.card:hover {
-  border-color: var(--accent);
-  box-shadow: 0 0 0 1px var(--accent), 0 8px 28px var(--glow);
-}
-
-.card-icon {
-  font-size: 1.45rem;
-  margin-bottom: 0.65rem;
-}
-
-.card h3 {
-  font-size: 0.98rem;
-  font-weight: 700;
-  margin-bottom: 0.3rem;
-}
-
-.card p {
-  font-size: 0.88rem;
-  color: var(--text-mid);
-  line-height: 1.55;
-}
-
-/* wide card spanning 2 cols */
-.card-wide {
-  grid-column: 1 / -1;
-  display: flex;
-  align-items: center;
-  gap: 1.4rem;
-  background: linear-gradient(135deg, var(--accent-soft), var(--accent2-soft));
-  border-color: transparent;
-}
-
-.card-wide:hover {
-  border-color: var(--accent);
-}
-
-.card-wide .card-icon {
-  font-size: 2.2rem;
-  margin-bottom: 0;
-  flex-shrink: 0;
-}
-
-.card-wide-body h3 {
-  font-family: var(--font-display);
-  font-size: 1.15rem;
-  margin-bottom: 0.2rem;
-}
-
-/* ═══════════════════════════════════════
-   SOUND PACKS
-   ═══════════════════════════════════════ */
-.packs-label {
-  font-weight: 600;
-  font-size: 0.82rem;
-  color: var(--text-faint);
-  margin-bottom: 0.6rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-}
-
-.pills {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-bottom: 2rem;
-}
-
-.pill {
-  padding: 0.4rem 0.9rem;
-  border: 1px solid var(--border);
-  border-radius: 100px;
-  font-size: 0.84rem;
-  color: var(--text-mid);
-  background: var(--bg-card);
-  transition: border-color 0.2s, color 0.2s, background 0.2s;
-  cursor: default;
-}
-
-.pill:hover {
-  border-color: var(--accent);
-  color: var(--text);
-}
-
-.pill-hot {
-  border-color: var(--accent);
-  background: var(--accent-soft);
-  color: var(--accent);
-  font-weight: 500;
-}
-
-/* ═══════════════════════════════════════
-   FAQ
-   ═══════════════════════════════════════ */
-.faq { margin-top: 1rem; }
-
-.faq-item {
-  border-bottom: 1px solid var(--border);
-}
-
-.faq-item:first-child { border-top: 1px solid var(--border); }
-
-.faq-q {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1.15rem 0;
-  cursor: pointer;
-  font-weight: 500;
-  font-size: 0.95rem;
-  user-select: none;
-  -webkit-user-select: none;
-}
-
-.faq-q .arrow {
-  font-size: 1.1rem;
-  color: var(--text-faint);
-  transition: transform 0.25s;
-  flex-shrink: 0;
-  margin-left: 1rem;
-}
-
-.faq-item.open .faq-q .arrow { transform: rotate(45deg); }
-
-.faq-a {
-  overflow: hidden;
-  max-height: 0;
-  transition: max-height 0.35s ease, padding-bottom 0.35s;
-}
-
-.faq-item.open .faq-a {
-  max-height: 180px;
-  padding-bottom: 1.15rem;
-}
-
-.faq-a p {
-  font-size: 0.9rem;
-  color: var(--text-mid);
-  line-height: 1.65;
-  max-width: 600px;
-}
-
-/* ═══════════════════════════════════════
-   BOTTOM CTA
-   ═══════════════════════════════════════ */
-.cta-end {
-  text-align: center;
-  padding: 5rem 2rem 6rem;
-}
-
-.cta-end h2 {
-  font-family: var(--font-display);
-  font-size: clamp(2rem, 5vw, 3rem);
-  margin-bottom: 0.5rem;
-}
-
-.cta-end .sub {
-  color: var(--text-mid);
-  font-size: 1.05rem;
-  margin-bottom: 2rem;
-}
-
-.cta-end .fine {
-  margin-top: 0.9rem;
-  font-size: 0.82rem;
-  color: var(--text-faint);
-}
-
-/* ═══════════════════════════════════════
-   FOOTER
-   ═══════════════════════════════════════ */
-footer {
-  padding: 1.6rem 2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 0.78rem;
-  color: var(--text-faint);
-  border-top: 1px solid var(--border);
-  flex-wrap: wrap;
-  gap: 0.6rem;
-}
-
-footer a {
-  text-decoration: none;
-  transition: color 0.15s;
-}
-footer a:hover { color: var(--text-mid); }
-
-.footer-links {
-  display: flex;
-  gap: 1.2rem;
-}
-
-/* ═══════════════════════════════════════
-   DEMO SLIDERS
-   ═══════════════════════════════════════ */
-.demo-sliders {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.5rem;
-}
-@media (max-width: 600px) { .demo-sliders { grid-template-columns: 1fr; } }
-
-.demo-slider {
-  padding: 1.4rem;
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  background: var(--bg-card);
-}
-
-.demo-slider-header {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 0.8rem;
-}
-
-.demo-slider-label { font-weight: 600; font-size: 0.9rem; }
-.demo-slider-value { font-size: 0.88rem; color: var(--accent); font-weight: 600; font-variant-numeric: tabular-nums; }
-
-.slider-input {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 100%;
-  height: 6px;
-  border-radius: 3px;
-  background: var(--border);
-  outline: none;
-  cursor: pointer;
-}
-
-.slider-input::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: var(--accent);
-  cursor: pointer;
-  box-shadow: 0 2px 8px var(--glow);
-  transition: transform 0.15s;
-}
-
-.slider-input::-webkit-slider-thumb:hover { transform: scale(1.15); }
-
-.demo-slider-hints {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 0.5rem;
-  font-size: 0.72rem;
-  color: var(--text-faint);
-}
-
-/* ═══════════════════════════════════════
-   VOICE SELECTOR
-   ═══════════════════════════════════════ */
-.voice-selector {
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  overflow: hidden;
-  background: var(--bg-card);
-}
-
-.voice-tabs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0;
-  border-bottom: 1px solid var(--border);
-}
-
-.voice-tab {
-  flex: 1;
-  min-width: 80px;
-  padding: 0.7rem 0.5rem;
-  background: none;
-  border: none;
-  font-family: var(--font-body);
-  font-size: 0.82rem;
-  color: var(--text-mid);
-  cursor: pointer;
-  transition: background 0.15s, color 0.15s;
-  border-right: 1px solid var(--border);
-}
-
-.voice-tab:last-child { border-right: none; }
-.voice-tab:hover { background: var(--bg-alt); color: var(--text); }
-.voice-tab.active { background: var(--accent-soft); color: var(--accent); font-weight: 600; }
-
-.voice-desc {
-  padding: 1.3rem 1.5rem;
-}
-
-.voice-name {
-  font-family: var(--font-display);
-  font-size: 1.15rem;
-  display: block;
-  margin-bottom: 0.15rem;
-}
-
-.voice-count {
-  font-size: 0.78rem;
-  color: var(--text-faint);
-  display: block;
-  margin-bottom: 0.5rem;
-}
-
-.voice-desc p {
-  font-size: 0.9rem;
-  color: var(--text-mid);
-  line-height: 1.55;
-}
-
-/* ═══════════════════════════════════════
-   VIDEO PLACEHOLDER
-   ═══════════════════════════════════════ */
-.video-placeholder {
-  width: 100%;
-  max-width: 560px;
-  margin: 0 auto;
-  aspect-ratio: 16/9;
-  border-radius: 14px;
-  border: 2px dashed var(--border);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.6rem;
-  color: var(--text-faint);
-  font-size: 0.9rem;
-}
-
-.video-play {
-  font-size: 2.5rem;
-  opacity: 0.3;
-}
-
-/* ═══════════════════════════════════════
-   ROADMAP
-   ═══════════════════════════════════════ */
-.roadmap {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  margin-top: 1.5rem;
-}
-
-.roadmap-item {
-  display: flex;
-  gap: 1.2rem;
-  padding: 1.2rem 0;
-  position: relative;
-}
-
-.roadmap-item:not(:last-child)::before {
-  content: '';
-  position: absolute;
-  left: 7px;
-  top: 2.6rem;
-  bottom: 0;
-  width: 2px;
-  background: var(--border);
-}
-
-.roadmap-dot {
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  background: var(--border);
-  flex-shrink: 0;
-  margin-top: 0.2rem;
-}
-
-.roadmap-done .roadmap-dot { background: var(--green); }
-.roadmap-done::before { background: var(--green) !important; }
-
-.roadmap-version {
-  font-weight: 700;
-  font-size: 0.95rem;
-  margin-bottom: 0.2rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.roadmap-badge {
-  font-size: 0.68rem;
-  font-weight: 600;
-  padding: 0.15rem 0.5rem;
-  border-radius: 100px;
-  background: color-mix(in srgb, var(--green) 15%, transparent);
-  color: var(--green);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-.roadmap-soon {
-  background: var(--accent-soft);
-  color: var(--accent);
-}
-
-.roadmap-item p {
-  font-size: 0.88rem;
-  color: var(--text-mid);
-  line-height: 1.5;
-}
-
-/* ═══════════════════════════════════════
-   RESPONSIVE
-   ═══════════════════════════════════════ */
-@media (max-width: 640px) {
-  .hero { padding: 8rem 1.4rem 3rem; }
-  .wrap { padding: 0 1.4rem; }
-  .section { padding: 3.5rem 0; }
-  .nav-right a:not(.nav-dl) { display: none; }
-  footer { flex-direction: column; text-align: center; }
+  --serif: 'DM Serif Display', Georgia, serif;
+  --sans: 'DM Sans', system-ui, sans-serif;
+  --bg: #FAF7F2; --bg2: #F0EBE3; --card: #fff; --text: #1a1a1a; --mid: #555; --faint: #999; --border: #e4dfd8;
+  --pink: #E63E6D; --pink-soft: #fce8ef; --purple: #6C3CE0; --purple-soft: #ede5ff; --green: #16a34a; --green-soft: #dcfce7;
+  --glow: rgba(230,62,109,0.1); --shadow: rgba(0,0,0,0.06);
+}
+@media(prefers-color-scheme:dark){:root{
+  --bg:#111110;--bg2:#1a1918;--card:#1e1e1c;--text:#edece8;--mid:#a8a69f;--faint:#6b695f;--border:#2a2928;
+  --pink:#f06292;--pink-soft:rgba(240,98,146,0.12);--purple:#a78bfa;--purple-soft:rgba(167,139,250,0.1);
+  --green:#4ade80;--green-soft:rgba(74,222,128,0.12);--glow:rgba(240,98,146,0.08);--shadow:rgba(0,0,0,0.3);
+}}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+::selection{background:var(--pink);color:#fff}
+a{color:inherit}img{max-width:100%;display:block}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:90;padding:.85rem 1.8rem;display:flex;justify-content:space-between;align-items:center;background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.nav-brand{display:flex;align-items:center;gap:.5rem;text-decoration:none;font-family:var(--serif);font-size:1.1rem}
+.nav-brand img{width:28px;height:28px;border-radius:7px}
+.nav-r{display:flex;align-items:center;gap:1.2rem}
+.nav-r a{text-decoration:none;font-size:.85rem;color:var(--mid);transition:color .15s}
+.nav-r a:hover{color:var(--text)}
+.nav-dl{display:inline-flex;align-items:center;gap:.4rem;padding:.4rem 1rem;background:var(--text);color:var(--bg);border-radius:8px;text-decoration:none;font-size:.83rem;font-weight:600;transition:opacity .15s}
+.nav-dl:hover{opacity:.85}
+
+/* HERO */
+.hero{padding:9rem 2rem 4rem;max-width:780px;margin:0 auto;text-align:center}
+.hero-icon{width:96px;height:96px;border-radius:24px;margin:0 auto 1.8rem;box-shadow:0 16px 48px var(--glow);animation:bob 4s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-8px) rotate(1deg)}}
+.hero h1{font-family:var(--serif);font-size:clamp(2.6rem,6.5vw,4.2rem);line-height:1.08;letter-spacing:-.025em;margin-bottom:1.2rem}
+.hero h1 em{font-style:italic;color:var(--pink)}
+.hero-sub{font-size:1.15rem;color:var(--mid);max-width:480px;margin:0 auto 2.2rem;line-height:1.7}
+.btn-big{display:inline-flex;align-items:center;gap:.5rem;padding:.9rem 1.8rem;background:var(--text);color:var(--bg);border-radius:12px;text-decoration:none;font-size:1rem;font-weight:600;transition:transform .15s,box-shadow .2s;box-shadow:0 2px 12px var(--shadow)}
+.btn-big:hover{transform:translateY(-1px);box-shadow:0 6px 20px var(--shadow)}
+.btn-big svg{width:18px;height:18px}
+.hero-info{margin-top:1rem;font-size:.82rem;color:var(--faint);line-height:1.8}
+
+/* SECTION */
+.wrap{max-width:800px;margin:0 auto;padding:0 2rem}
+.sec{padding:4.5rem 0}
+.sec-tag{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--pink);margin-bottom:.6rem}
+.sec h2{font-family:var(--serif);font-size:clamp(1.8rem,4vw,2.4rem);line-height:1.12;letter-spacing:-.02em;margin-bottom:.6rem}
+.sec .lead{font-size:1rem;color:var(--mid);max-width:520px;margin-bottom:2.4rem}
+
+/* ═══ SECTION 1: HEAR IT ═══ (the hook — sound first) */
+.sound-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.6rem}
+@media(max-width:600px){.sound-grid{grid-template-columns:repeat(2,1fr)}}
+
+.sound-btn{
+  padding:1rem .8rem;border:1px solid var(--border);border-radius:12px;background:var(--card);
+  cursor:pointer;text-align:center;transition:all .2s;position:relative;overflow:hidden;
+  font-family:var(--sans);
+}
+.sound-btn:hover{border-color:var(--pink);box-shadow:0 0 0 1px var(--pink),0 4px 16px var(--glow)}
+.sound-btn.playing{border-color:var(--pink);background:var(--pink-soft)}
+.sound-btn .emoji{font-size:1.6rem;display:block;margin-bottom:.4rem}
+.sound-btn .name{font-size:.8rem;font-weight:600;display:block}
+.sound-btn .sub{font-size:.68rem;color:var(--faint);display:block;margin-top:.15rem}
+.sound-btn .play-hint{position:absolute;top:.4rem;right:.5rem;font-size:.6rem;color:var(--faint);opacity:0;transition:opacity .15s}
+.sound-btn:hover .play-hint{opacity:1}
+
+/* ═══ SECTION 2: TWO THINGS ═══ */
+.two-cols{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+@media(max-width:600px){.two-cols{grid-template-columns:1fr}}
+.big-card{padding:2rem;border:1px solid var(--border);border-radius:16px;background:var(--card);transition:border-color .25s}
+.big-card:hover{border-color:var(--pink)}
+.big-card .emoji{font-size:2rem;margin-bottom:.8rem}
+.big-card h3{font-family:var(--serif);font-size:1.25rem;margin-bottom:.4rem}
+.big-card p{font-size:.9rem;color:var(--mid);line-height:1.55}
+.big-card ul{list-style:none;margin-top:.8rem}
+.big-card ul li{font-size:.85rem;color:var(--mid);padding:.25rem 0;padding-left:1.2rem;position:relative}
+.big-card ul li::before{content:'→';position:absolute;left:0;color:var(--pink)}
+
+/* DIFF BANNER */
+.diff{padding:2rem;background:linear-gradient(135deg,var(--pink-soft),var(--purple-soft));border:1px solid transparent;border-radius:16px;text-align:center;margin:2rem 0}
+.diff h3{font-family:var(--serif);font-size:1.2rem;margin-bottom:.3rem}
+.diff p{font-size:.9rem;color:var(--mid)}
+
+/* ═══ VOICE SELECTOR ═══ */
+.vs{border:1px solid var(--border);border-radius:14px;overflow:hidden;background:var(--card)}
+.vs-tabs{display:flex;flex-wrap:wrap;border-bottom:1px solid var(--border)}
+.vs-tab{flex:1;min-width:70px;padding:.65rem .4rem;background:none;border:none;border-right:1px solid var(--border);font-family:var(--sans);font-size:.78rem;color:var(--mid);cursor:pointer;transition:all .15s}
+.vs-tab:last-child{border-right:none}
+.vs-tab:hover{background:var(--bg2);color:var(--text)}
+.vs-tab.active{background:var(--pink-soft);color:var(--pink);font-weight:600}
+.vs-body{padding:1.2rem 1.4rem;min-height:80px}
+.vs-name{font-family:var(--serif);font-size:1.1rem;display:block}
+.vs-count{font-size:.75rem;color:var(--faint);display:block;margin-bottom:.4rem}
+.vs-body p{font-size:.88rem;color:var(--mid);line-height:1.55}
+
+/* ═══ SLIDERS DEMO ═══ */
+.sliders{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.5rem}
+@media(max-width:600px){.sliders{grid-template-columns:1fr}}
+.sl{padding:1.2rem;border:1px solid var(--border);border-radius:12px;background:var(--card)}
+.sl-top{display:flex;justify-content:space-between;margin-bottom:.6rem}
+.sl-label{font-weight:600;font-size:.88rem}
+.sl-val{font-size:.85rem;color:var(--pink);font-weight:600;font-variant-numeric:tabular-nums}
+.sl input[type=range]{-webkit-appearance:none;width:100%;height:5px;border-radius:3px;background:var(--border);outline:none;cursor:pointer}
+.sl input::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--pink);cursor:pointer;box-shadow:0 2px 6px var(--glow)}
+.sl-hints{display:flex;justify-content:space-between;margin-top:.4rem;font-size:.68rem;color:var(--faint)}
+
+/* ROADMAP */
+.rm{margin-top:1.2rem}
+.rm-item{display:flex;gap:1rem;padding:1rem 0;position:relative}
+.rm-item:not(:last-child)::before{content:'';position:absolute;left:7px;top:2.4rem;bottom:0;width:2px;background:var(--border)}
+.rm-dot{width:16px;height:16px;border-radius:50%;background:var(--border);flex-shrink:0;margin-top:.15rem}
+.rm-done .rm-dot{background:var(--green)}
+.rm-done::before{background:var(--green)!important}
+.rm-v{font-weight:700;font-size:.92rem;margin-bottom:.15rem;display:flex;align-items:center;gap:.4rem}
+.rm-badge{font-size:.65rem;font-weight:600;padding:.12rem .45rem;border-radius:100px;text-transform:uppercase;letter-spacing:.04em}
+.rm-shipped{background:var(--green-soft);color:var(--green)}
+.rm-soon{background:var(--pink-soft);color:var(--pink)}
+.rm-item p{font-size:.85rem;color:var(--mid);line-height:1.5}
+
+/* FAQ */
+.faq-item{border-bottom:1px solid var(--border)}
+.faq-item:first-child{border-top:1px solid var(--border)}
+.faq-q{display:flex;justify-content:space-between;align-items:center;padding:1.1rem 0;cursor:pointer;font-weight:500;font-size:.93rem;user-select:none}
+.faq-q .ar{font-size:1.1rem;color:var(--faint);transition:transform .25s;flex-shrink:0;margin-left:1rem}
+.faq-item.open .ar{transform:rotate(45deg)}
+.faq-a{overflow:hidden;max-height:0;transition:max-height .35s ease,padding-bottom .35s}
+.faq-item.open .faq-a{max-height:200px;padding-bottom:1.1rem}
+.faq-a p{font-size:.88rem;color:var(--mid);line-height:1.65;max-width:580px}
+
+/* CTA */
+.cta{text-align:center;padding:5rem 2rem 5.5rem}
+.cta h2{font-family:var(--serif);font-size:clamp(1.9rem,5vw,2.8rem);margin-bottom:.5rem}
+.cta .sub{color:var(--mid);font-size:1rem;margin-bottom:1.8rem}
+.cta .fine{margin-top:.8rem;font-size:.8rem;color:var(--faint)}
+
+/* FOOTER */
+footer{padding:1.5rem 2rem;display:flex;justify-content:space-between;align-items:center;font-size:.76rem;color:var(--faint);border-top:1px solid var(--border);flex-wrap:wrap;gap:.5rem}
+footer a{text-decoration:none;transition:color .15s}
+footer a:hover{color:var(--mid)}
+.f-links{display:flex;gap:1rem}
+
+@media(max-width:640px){
+  .hero{padding:7.5rem 1.4rem 3rem}
+  .wrap{padding:0 1.4rem}
+  .sec{padding:3rem 0}
+  .nav-r a:not(.nav-dl){display:none}
+  footer{flex-direction:column;text-align:center}
 }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav class="nav">
-  <a href="/" class="nav-brand">
-    <img src="/icon.png" alt="">
-    SlapMyMac
-  </a>
-  <div class="nav-right">
+  <a href="/" class="nav-brand"><img src="/icon.png" alt="">SlapMyMac</a>
+  <div class="nav-r">
     <a href="#faq">FAQ</a>
-    <a href="#sounds">Sounds</a>
     <a href="https://polar.sh/cepalabs/portal" target="_blank">Recover Key</a>
-    <a href="#download" class="nav-dl">
-      <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14"><path d="M10 3a1 1 0 011 1v7.586l2.293-2.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 111.414-1.414L9 11.586V4a1 1 0 011-1z"/><path d="M3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"/></svg>
-      Download
-    </a>
+    <a href="#download" class="nav-dl">↓ Download</a>
   </div>
 </nav>
 
-<!-- HERO -->
+<!-- ═══════════════ HERO ═══════════════ -->
 <section class="hero">
-  <img src="/icon.png" alt="SlapMyMac" class="hero-float">
-  <div class="hero-badge">✦ New — now with lid movement sounds</div>
+  <img src="/icon.png" alt="SlapMyMac" class="hero-icon">
   <h1>Slap your MacBook.<br>It <em>screams</em> back.</h1>
-  <p class="hero-body">Your laptop has feelings now. Slap it — it yells. Move the lid — it creaks like an old door, revs like an engine, or plays violin. We're not making this up.</p>
-  <div class="hero-actions">
-    <a href="#download" class="btn-big">
-      <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 3a1 1 0 011 1v7.586l2.293-2.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 111.414-1.414L9 11.586V4a1 1 0 011-1z"/><path d="M3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"/></svg>
-      Download for Mac
-    </a>
-    <div class="hero-meta">
-      <span>macOS 14+ · Apple Silicon M1+</span>
-      <span>$2.99 one-time · no subscription ever</span>
-    </div>
-  </div>
+  <p class="hero-sub">Your laptop has feelings now. Slap it, move the lid, and hear it react with 142+ sounds. We're serious.</p>
+  <a href="#download" class="btn-big">
+    <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 3a1 1 0 011 1v7.586l2.293-2.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 111.414-1.414L9 11.586V4a1 1 0 011-1z"/><path d="M3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"/></svg>
+    Download for Mac
+  </a>
+  <p class="hero-info">macOS 14+ · Apple Silicon M1+ · $2.99 one-time · no subscription</p>
 </section>
 
-<!-- MARQUEE -->
-<div class="marquee-wrap">
-  <div class="marquee">
-    <span>👋 142+ sound clips</span>
-    <span>🚪 Lid creaks</span>
-    <span>🏎️ <b>Engine sounds</b></span>
-    <span>🎻 Violin duets</span>
-    <span>😫 Pain</span>
-    <span>😏 Sexy (78 clips)</span>
-    <span>🐸 Meme</span>
-    <span>💨 Fart</span>
-    <span>🤬 WTF</span>
-    <span>⚡ Zero lag</span>
-    <span>🔧 Engine struggling</span>
-    <span>🎩 Gentleman</span>
-    <span>💀 Halo</span>
-    <span>👋 142+ sound clips</span>
-    <span>🚪 Lid creaks</span>
-    <span>🏎️ <b>Engine sounds</b></span>
-    <span>🎻 Violin duets</span>
-    <span>😫 Pain</span>
-    <span>😏 Sexy (78 clips)</span>
-    <span>🐸 Meme</span>
-    <span>💨 Fart</span>
-    <span>🤬 WTF</span>
-    <span>⚡ Zero lag</span>
-    <span>🔧 Engine struggling</span>
-    <span>🎩 Gentleman</span>
-    <span>💀 Halo</span>
-  </div>
-</div>
-
-<!-- HOW IT WORKS -->
-<div class="section">
+<!-- ═══════════════ HEAR IT (the hook) ═══════════════ -->
+<div class="sec">
   <div class="wrap">
-    <p class="section-tag">How it works</p>
-    <h2>Two sensors. Zero shame.</h2>
-    <p class="lead">SlapMyMac reads your MacBook's accelerometer and lid angle sensor. It hides in the menu bar and reacts to every slap, tap, and lid wiggle.</p>
+    <p class="sec-tag">Hear it</p>
+    <h2>Click any sound. That's what your Mac does now.</h2>
+    <p class="lead">Every slap plays a random clip from the pack you choose. Try them.</p>
 
-    <div class="cards">
-      <div class="card">
-        <div class="card-icon">👋</div>
-        <h3>Slap detection</h3>
-        <p>Force-proportional — a gentle tap is a whisper, a full slap is a scream. Adjust sensitivity from "butterfly landing" to "full commitment."</p>
-      </div>
-      <div class="card">
-        <div class="card-icon">📐</div>
-        <h3>Lid movement</h3>
-        <p>Tracks every degree of your screen. Open it — hear a creak. Close it — engine shuts down. Back and forth — play an instrument.</p>
-      </div>
-      <div class="card">
-        <div class="card-icon">🏎️</div>
-        <h3>Direction aware</h3>
-        <p>Engine sounds know which way you're moving. Open → ignition. Close → shutdown. Struggling engines crank every time you try.</p>
-      </div>
-      <div class="card">
-        <div class="card-icon">🎻</div>
-        <h3>Play music with your lid</h3>
-        <p>Instruments play two notes — one per direction. Move the lid like a bow and your MacBook becomes a very expensive violin.</p>
-      </div>
-      <div class="card">
-        <div class="card-icon">🎛️</div>
-        <h3>Menu bar only</h3>
-        <p>No dock icon. Inline sliders for sensitivity and cooldown. Switch sounds on the fly. Settings persist across restarts.</p>
-      </div>
-      <div class="card">
-        <div class="card-icon">⚡</div>
-        <h3>Instant response</h3>
-        <p>Raw delta detection, zero smoothing lag. Sound starts the frame you move. Stops the frame you don't. No phantom triggers.</p>
-      </div>
-
-      <!-- Wide differentiator card -->
-      <div class="card card-wide">
-        <div class="card-icon">✦</div>
-        <div class="card-wide-body">
-          <h3>The only slap app with lid sounds.</h3>
-          <p>Creaks, engines, instruments, direction‑aware playback, wake‑from‑sleep detection. Nobody else does this.</p>
-        </div>
-      </div>
+    <div class="sound-grid">
+      <button class="sound-btn" onclick="playSound('pain',this)">
+        <span class="emoji">😫</span>
+        <span class="name">Pain</span>
+        <span class="sub">"Ouch! Hey!"</span>
+        <span class="play-hint">▶ tap</span>
+      </button>
+      <button class="sound-btn" onclick="playSound('meme',this)">
+        <span class="emoji">🐸</span>
+        <span class="name">Meme</span>
+        <span class="sub">Vine Boom</span>
+        <span class="play-hint">▶ tap</span>
+      </button>
+      <button class="sound-btn" onclick="playSound('fart',this)">
+        <span class="emoji">💨</span>
+        <span class="name">Fart</span>
+        <span class="sub">No comment</span>
+        <span class="play-hint">▶ tap</span>
+      </button>
+      <button class="sound-btn" onclick="playSound('halo',this)">
+        <span class="emoji">💀</span>
+        <span class="name">Halo</span>
+        <span class="sub">Death FX</span>
+        <span class="play-hint">▶ tap</span>
+      </button>
+      <button class="sound-btn" onclick="playSound('wtf',this)">
+        <span class="emoji">🤬</span>
+        <span class="name">WTF</span>
+        <span class="sub">Wilhelm scream</span>
+        <span class="play-hint">▶ tap</span>
+      </button>
+      <button class="sound-btn" onclick="playSound('gentleman',this)">
+        <span class="emoji">🎩</span>
+        <span class="name">Gentleman</span>
+        <span class="sub">Refined protest</span>
+        <span class="play-hint">▶ tap</span>
+      </button>
+      <button class="sound-btn" onclick="playSound('sexy',this)">
+        <span class="emoji">😏</span>
+        <span class="name">Sexy</span>
+        <span class="sub">78 clips...</span>
+        <span class="play-hint">▶ tap</span>
+      </button>
+      <button class="sound-btn" onclick="playSound('creak',this)">
+        <span class="emoji">🚪</span>
+        <span class="name">Lid Creak</span>
+        <span class="sub">Move the lid</span>
+        <span class="play-hint">▶ tap</span>
+      </button>
     </div>
   </div>
 </div>
 
-<!-- SOUNDS -->
-<div class="section" id="sounds">
+<!-- ═══════════════ TWO FEATURES ═══════════════ -->
+<div class="sec">
   <div class="wrap">
-    <p class="section-tag">Sound library</p>
-    <h2>8 slap packs. 30+ lid sounds.</h2>
-    <p class="lead">Something for every mood and every meeting you want to sabotage.</p>
+    <p class="sec-tag">Two sensors</p>
+    <h2>Slap it. Or just move the lid.</h2>
 
-    <p class="packs-label">Slap reactions</p>
-    <div class="pills">
-      <span class="pill pill-hot">😫 Pain — "Ouch! Hey!"</span>
-      <span class="pill">😏 Sexy — 78 clips, escalating</span>
-      <span class="pill">💀 Halo — death FX</span>
-      <span class="pill">💨 Fart</span>
-      <span class="pill">🎩 Gentleman</span>
-      <span class="pill">🤬 WTF</span>
-      <span class="pill">🐸 Meme — Vine Boom, Bruh, Oof</span>
+    <div class="two-cols">
+      <div class="big-card">
+        <div class="emoji">👋</div>
+        <h3>Slap Detection</h3>
+        <p>The accelerometer feels every tap, slap, and smack. Volume scales with force — soft tap is a whisper, full slap is chaos.</p>
+        <ul>
+          <li>8 sound packs, 142+ clips</li>
+          <li>Force-proportional volume</li>
+          <li>Adjustable sensitivity</li>
+          <li>Cooldown timer</li>
+        </ul>
+      </div>
+      <div class="big-card">
+        <div class="emoji">📐</div>
+        <h3>Lid Sounds</h3>
+        <p>The lid angle sensor tracks every degree. Open, close, wiggle — each movement triggers a different sound.</p>
+        <ul>
+          <li>30+ lid sounds in 4 categories</li>
+          <li>Direction-aware engines</li>
+          <li>Instruments with two notes</li>
+          <li>Wake-from-sleep detection</li>
+        </ul>
+      </div>
     </div>
 
-    <p class="packs-label">Lid sounds</p>
-    <div class="pills">
-      <span class="pill">🚪 Creaks & Doors</span>
-      <span class="pill">🏎️ Engine Start / Stop</span>
-      <span class="pill">🔧 Engine Struggling</span>
-      <span class="pill">🎻 Violin Bow</span>
-      <span class="pill">🎸 Guitar</span>
-      <span class="pill">⛪ Cathedral Organ</span>
-      <span class="pill">🔔 Tibetan Bowl</span>
-      <span class="pill">🎵 Shepard Tone</span>
-      <span class="pill">🎺 Bugle</span>
-      <span class="pill">🔩 Metallic Door</span>
+    <div class="diff">
+      <h3>✦ The only slap app with lid sounds.</h3>
+      <p>Creaks, engines, instruments, direction‑aware playback. Nobody else does this.</p>
     </div>
   </div>
 </div>
 
-<!-- INTERACTIVE DEMO -->
-<div class="section" id="demo">
+<!-- ═══════════════ ALL PACKS ═══════════════ -->
+<div class="sec" id="sounds">
   <div class="wrap">
-    <p class="section-tag">Try it</p>
-    <h2>Dial in your slap.</h2>
-    <p class="lead">These are the actual controls inside the app. Drag them around — you'll get the idea.</p>
-
-    <div class="demo-sliders">
-      <div class="demo-slider">
-        <div class="demo-slider-header">
-          <span class="demo-slider-label">Sensitivity</span>
-          <span class="demo-slider-value" id="sens-val">0.05g</span>
-        </div>
-        <input type="range" min="1" max="50" value="5" class="slider-input" id="sens-slider" oninput="document.getElementById('sens-val').textContent=((this.value/100).toFixed(2))+'g'">
-        <div class="demo-slider-hints">
-          <span>Butterfly landing</span>
-          <span>Full commitment</span>
-        </div>
-      </div>
-      <div class="demo-slider">
-        <div class="demo-slider-header">
-          <span class="demo-slider-label">Cooldown</span>
-          <span class="demo-slider-value" id="cool-val">1.0s</span>
-        </div>
-        <input type="range" min="1" max="30" value="10" class="slider-input" id="cool-slider" oninput="document.getElementById('cool-val').textContent=(this.value/10).toFixed(1)+'s'">
-        <div class="demo-slider-hints">
-          <span>Rapid-fire heckling</span>
-          <span>Dramatic pauses</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- VOICE PACK SELECTOR -->
-<div class="section">
-  <div class="wrap">
-    <p class="section-tag">Sound packs</p>
+    <p class="sec-tag">All sounds</p>
     <h2>Eight moods of protest.</h2>
-    <p class="lead">142+ clips across 8 voice packs. Your open-plan office will have questions.</p>
+    <p class="lead">Click a pack to hear what it sounds like and read the description.</p>
 
-    <div class="voice-selector">
-      <div class="voice-tabs">
-        <button class="voice-tab active" onclick="selectVoice(this, 'pain')">😫 Pain</button>
-        <button class="voice-tab" onclick="selectVoice(this, 'sexy')">😏 Sexy</button>
-        <button class="voice-tab" onclick="selectVoice(this, 'halo')">💀 Halo</button>
-        <button class="voice-tab" onclick="selectVoice(this, 'fart')">💨 Fart</button>
-        <button class="voice-tab" onclick="selectVoice(this, 'gentleman')">🎩 Gentleman</button>
-        <button class="voice-tab" onclick="selectVoice(this, 'wtf')">🤬 WTF</button>
-        <button class="voice-tab" onclick="selectVoice(this, 'meme')">🐸 Meme</button>
+    <div class="vs">
+      <div class="vs-tabs">
+        <button class="vs-tab active" onclick="sv(this,'pain')">😫 Pain</button>
+        <button class="vs-tab" onclick="sv(this,'sexy')">😏 Sexy</button>
+        <button class="vs-tab" onclick="sv(this,'halo')">💀 Halo</button>
+        <button class="vs-tab" onclick="sv(this,'fart')">💨 Fart</button>
+        <button class="vs-tab" onclick="sv(this,'gentleman')">🎩 Gent</button>
+        <button class="vs-tab" onclick="sv(this,'wtf')">🤬 WTF</button>
+        <button class="vs-tab" onclick="sv(this,'meme')">🐸 Meme</button>
       </div>
-      <div class="voice-desc" id="voice-desc">
-        <span class="voice-name" id="voice-name">Pain</span>
-        <span class="voice-count" id="voice-count">10 clips</span>
-        <p id="voice-text">Ouch. Ow. Hey, that hurts! Classic pain energy. The default for a reason.</p>
+      <div class="vs-body">
+        <span class="vs-name" id="vn">Pain</span>
+        <span class="vs-count" id="vc">10 clips</span>
+        <p id="vt">Ouch. Ow. Hey, that hurts! Classic pain energy. The default for a reason.</p>
+      </div>
+    </div>
+
+    <div class="sliders">
+      <div class="sl">
+        <div class="sl-top"><span class="sl-label">Sensitivity</span><span class="sl-val" id="sv1">0.05g</span></div>
+        <input type="range" min="1" max="50" value="5" oninput="document.getElementById('sv1').textContent=(this.value/100).toFixed(2)+'g'">
+        <div class="sl-hints"><span>Butterfly landing</span><span>Full commitment</span></div>
+      </div>
+      <div class="sl">
+        <div class="sl-top"><span class="sl-label">Cooldown</span><span class="sl-val" id="sv2">1.0s</span></div>
+        <input type="range" min="1" max="30" value="10" oninput="document.getElementById('sv2').textContent=(this.value/10).toFixed(1)+'s'">
+        <div class="sl-hints"><span>Rapid-fire heckling</span><span>Dramatic pauses</span></div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- VIDEO PLACEHOLDER -->
-<div class="section">
-  <div class="wrap" style="text-align: center;">
-    <p class="section-tag">See it in action</p>
-    <h2>Slap. Creak. Repeat.</h2>
-    <div class="video-placeholder">
-      <div class="video-play">▶</div>
-      <p>Demo video coming soon</p>
-    </div>
-  </div>
-</div>
-
-<!-- ROADMAP -->
-<div class="section" id="roadmap">
+<!-- ═══════════════ ROADMAP ═══════════════ -->
+<div class="sec" id="roadmap">
   <div class="wrap">
-    <p class="section-tag">Roadmap</p>
-    <h2>What's coming next.</h2>
-
-    <div class="roadmap">
-      <div class="roadmap-item roadmap-done">
-        <div class="roadmap-dot"></div>
-        <div>
-          <div class="roadmap-version">v1.0 <span class="roadmap-badge">Shipped</span></div>
-          <p>8 voice packs, 142+ clips, lid sounds, direction-aware engines, instruments, menu bar app with sliders.</p>
-        </div>
+    <p class="sec-tag">Roadmap</p>
+    <h2>What's next.</h2>
+    <div class="rm">
+      <div class="rm-item rm-done">
+        <div class="rm-dot"></div>
+        <div><div class="rm-v">v1.0 <span class="rm-badge rm-shipped">Shipped</span></div><p>8 voice packs, 142+ clips, lid sounds, direction-aware engines, instruments, menu bar sliders.</p></div>
       </div>
-      <div class="roadmap-item">
-        <div class="roadmap-dot"></div>
-        <div>
-          <div class="roadmap-version">v1.1 <span class="roadmap-badge roadmap-soon">Coming soon</span></div>
-          <p>Custom sound packs — add your own MP3s. Record your voice, your cat, your boss screaming.</p>
-        </div>
+      <div class="rm-item">
+        <div class="rm-dot"></div>
+        <div><div class="rm-v">v1.1 <span class="rm-badge rm-soon">Soon</span></div><p>Custom sound packs — import your own MP3s. Record your cat, your boss, your ex.</p></div>
       </div>
-      <div class="roadmap-item">
-        <div class="roadmap-dot"></div>
-        <div>
-          <div class="roadmap-version">v1.2</div>
-          <p>Launch at login, global keyboard shortcut for pause, auto-updates via Sparkle.</p>
-        </div>
+      <div class="rm-item">
+        <div class="rm-dot"></div>
+        <div><div class="rm-v">v1.2</div><p>Launch at login, global shortcut, auto-updates.</p></div>
       </div>
-      <div class="roadmap-item">
-        <div class="roadmap-dot"></div>
-        <div>
-          <div class="roadmap-version">v2.0</div>
-          <p>Visual reactions — screen flash, menu bar animations, shake detection with different responses.</p>
-        </div>
+      <div class="rm-item">
+        <div class="rm-dot"></div>
+        <div><div class="rm-v">v2.0</div><p>Visual reactions — screen flash, menu bar animations, shake-specific sounds.</p></div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- FAQ -->
-<div class="section" id="faq">
+<!-- ═══════════════ FAQ ═══════════════ -->
+<div class="sec" id="faq">
   <div class="wrap">
-    <p class="section-tag">FAQ</p>
+    <p class="sec-tag">FAQ</p>
     <h2>Answers, before you ask.</h2>
-
-    <div class="faq">
-      <div class="faq-item">
-        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Will this void my warranty? <span class="arrow">+</span></div>
-        <div class="faq-a"><p>Nope. SlapMyMac only reads sensors — doesn't modify anything. That said, if you slap hard enough to break something, that's between you and AppleCare.</p></div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Does it work on Intel Macs? <span class="arrow">+</span></div>
-        <div class="faq-a"><p>No. The accelerometer only exists in Apple Silicon MacBooks (M1 and later). Intel Macs simply don't have the hardware. Sorry, grandpa.</p></div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">What about battery life? <span class="arrow">+</span></div>
-        <div class="faq-a"><p>Barely noticeable. Sensor polling is lightweight. When lid sounds are off it drops to 30Hz, when paused it's basically zero.</p></div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Does it trigger while typing? <span class="arrow">+</span></div>
-        <div class="faq-a"><p>No. The detection filters out keyboard vibrations. Only actual taps, slaps, and intentional hits trigger sounds. Your Slack messages are safe.</p></div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Can I add my own sounds? <span class="arrow">+</span></div>
-        <div class="faq-a"><p>Not yet — but it's on the roadmap. Custom sound pack import is planned for a future update.</p></div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">What's the deal with lid sounds? Do I need to slap for those? <span class="arrow">+</span></div>
-        <div class="faq-a"><p>No slapping needed! Lid sounds respond purely to screen movement. Open → creak. Close → engine off. Back and forth → music. It's a whole separate thing.</p></div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Can I get a refund? <span class="arrow">+</span></div>
-        <div class="faq-a"><p>14 days, no questions asked. Email hello@cepalabs.com and we'll sort it.</p></div>
-      </div>
+    <div>
+      <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Will this void my warranty?<span class="ar">+</span></div><div class="faq-a"><p>Nope. Reads sensors, doesn't modify anything. But if you slap hard enough to break something — that's between you and AppleCare.</p></div></div>
+      <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Does it work on Intel Macs?<span class="ar">+</span></div><div class="faq-a"><p>No. The accelerometer only exists in Apple Silicon (M1+). Intel Macs don't have the hardware. Sorry, grandpa.</p></div></div>
+      <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">What about battery?<span class="ar">+</span></div><div class="faq-a"><p>Barely noticeable. Polls at 30Hz when idle, near zero when paused. Your battery will be fine.</p></div></div>
+      <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Does it trigger while typing?<span class="ar">+</span></div><div class="faq-a"><p>No. Filters out keyboard vibrations. Only real slaps and taps trigger sounds. Your Slack messages are safe.</p></div></div>
+      <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">What about lid sounds? Do I need to slap?<span class="ar">+</span></div><div class="faq-a"><p>No slapping needed! Lid sounds respond to screen movement only. Open → creak. Close → engine off. Back and forth → music. Separate feature.</p></div></div>
+      <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Can I add my own sounds?<span class="ar">+</span></div><div class="faq-a"><p>Not yet — custom packs are coming in v1.1. Stay tuned.</p></div></div>
+      <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Refund?<span class="ar">+</span></div><div class="faq-a"><p>14 days, no questions. Email hello@cepalabs.com.</p></div></div>
     </div>
   </div>
 </div>
 
-<!-- CTA BOTTOM -->
-<section class="cta-end" id="download">
+<!-- ═══════════════ CTA ═══════════════ -->
+<section class="cta" id="download">
   <h2>Less than your coffee.<br>More fun than your therapist.</h2>
-  <p class="sub">$2.99 one time. Lifetime access. Your MacBook will never be the same.</p>
+  <p class="sub">$2.99 one time. Lifetime access. No subscription ever.</p>
   <a href="https://buy.polar.sh/polar_cl_ZqkQpyd7cITxS5dUGLZf8qyuVtjRtr55HMGPB0te0aL" class="btn-big">
     <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 3a1 1 0 011 1v7.586l2.293-2.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 111.414-1.414L9 11.586V4a1 1 0 011-1z"/><path d="M3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"/></svg>
     Download for Mac
@@ -1070,10 +376,9 @@ footer a:hover { color: var(--text-mid); }
   <p class="fine">Download free · activate with license key inside the app</p>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <span>© 2026 <a href="https://cepalabs.com">CEPALabs</a></span>
-  <div class="footer-links">
+  <div class="f-links">
     <a href="/privacy.html">Privacy</a>
     <a href="/terms.html">Terms</a>
     <a href="mailto:hello@cepalabs.com">Contact</a>
@@ -1081,23 +386,36 @@ footer a:hover { color: var(--text-mid); }
 </footer>
 
 <script>
-const voiceData = {
-  pain: { name: 'Pain', count: '10 clips', desc: 'Ouch. Ow. Hey, that hurts! Classic pain energy. The default for a reason.' },
-  sexy: { name: 'Sexy', count: '78 clips', desc: 'Starts gentle. Gets... intense. The more you slap, the more it escalates. 78 levels of regret.' },
-  halo: { name: 'Halo', count: '9 clips', desc: 'Master Chief died for this. Iconic death sound effects from the Halo series.' },
-  fart: { name: 'Fart', count: '10 clips', desc: 'No explanation needed. No dignity required. Just pure, unfiltered flatulence.' },
-  gentleman: { name: 'Gentleman', count: '10 clips', desc: 'Refined coughs, startled sighs, and the occasional dignified sneeze. For the classy slapper.' },
-  wtf: { name: 'WTF', count: '10 clips', desc: 'Wilhelm screams, zombie growls, horrible laughs. When "ow" just doesn\'t cut it.' },
-  meme: { name: 'Meme', count: '15 clips', desc: 'Vine Boom. Bruh. Oof. Emotional Damage. FBI Open Up. The internet\'s greatest hits.' }
-};
+// Sound preview
+let currentAudio = null;
+function playSound(id, btn) {
+  if (currentAudio) { currentAudio.pause(); currentAudio = null; }
+  document.querySelectorAll('.sound-btn').forEach(b => b.classList.remove('playing'));
+  const a = new Audio('/sounds/' + id + '.mp3');
+  btn.classList.add('playing');
+  currentAudio = a;
+  a.play();
+  a.onended = () => { btn.classList.remove('playing'); currentAudio = null; };
+}
 
-function selectVoice(btn, key) {
-  document.querySelectorAll('.voice-tab').forEach(t => t.classList.remove('active'));
+// Voice selector
+const vd = {
+  pain:{n:'Pain',c:'10 clips',t:'Ouch. Ow. Hey, that hurts! Classic pain energy. The default for a reason.'},
+  sexy:{n:'Sexy',c:'78 clips',t:'Starts gentle. Gets intense. The more you slap, the more it escalates. 78 levels of regret.'},
+  halo:{n:'Halo',c:'9 clips',t:'Master Chief died for this. Iconic death sound effects from the Halo series.'},
+  fart:{n:'Fart',c:'10 clips',t:'No explanation needed. No dignity required. Pure, unfiltered flatulence.'},
+  gentleman:{n:'Gentleman',c:'10 clips',t:'Refined coughs, startled sighs, and the occasional dignified sneeze. For the classy slapper.'},
+  wtf:{n:'WTF',c:'10 clips',t:'Wilhelm screams, zombie growls, horrible laughs. When "ow" just doesn\'t cut it.'},
+  meme:{n:'Meme',c:'15 clips',t:'Vine Boom. Bruh. Oof. Emotional Damage. FBI Open Up. The internet\'s greatest hits.'}
+};
+function sv(btn, key) {
+  document.querySelectorAll('.vs-tab').forEach(t => t.classList.remove('active'));
   btn.classList.add('active');
-  const v = voiceData[key];
-  document.getElementById('voice-name').textContent = v.name;
-  document.getElementById('voice-count').textContent = v.count;
-  document.getElementById('voice-text').textContent = v.desc;
+  const v = vd[key];
+  document.getElementById('vn').textContent = v.n;
+  document.getElementById('vc').textContent = v.c;
+  document.getElementById('vt').textContent = v.t;
+  playSound(key, btn);
 }
 </script>
 </body>

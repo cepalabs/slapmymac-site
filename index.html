@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SlapMyMac — Your MacBook Has Feelings</title>
+    <meta name="description" content="Slap your MacBook. It yells back. Move the lid — it creaks, revs, and plays music. 8 sound packs, 30+ lid sounds. $2.99 one-time.">
+    <meta property="og:title" content="SlapMyMac — Your MacBook Has Feelings">
+    <meta property="og:description" content="Slap your MacBook. It talks back. Yes, really.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://slapmymac.com">
+    <link rel="icon" type="image/png" href="/icon.png">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', sans-serif;
+            background: #0a0a0f;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(236, 72, 153, 0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .app-icon {
+            width: 120px;
+            height: 120px;
+            border-radius: 26px;
+            margin-bottom: 2rem;
+            box-shadow: 0 20px 60px rgba(236, 72, 153, 0.3);
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #fff 0%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .tagline {
+            font-size: 1.4rem;
+            color: #9ca3af;
+            max-width: 500px;
+            line-height: 1.6;
+            margin-bottom: 2.5rem;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #ec4899, #8b5cf6);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 14px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 8px 30px rgba(236, 72, 153, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(236, 72, 153, 0.5);
+        }
+
+        .btn-secondary {
+            padding: 1rem 2rem;
+            background: rgba(255, 255, 255, 0.08);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 14px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: background 0.2s;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        .price-tag {
+            margin-top: 1rem;
+            font-size: 0.95rem;
+            color: #6b7280;
+        }
+
+        .requirements {
+            margin-top: 0.5rem;
+            font-size: 0.85rem;
+            color: #4b5563;
+        }
+
+        /* Features */
+        .features {
+            padding: 6rem 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .features h2 {
+            font-size: 2.2rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            font-weight: 700;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .feature-card {
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            transition: border-color 0.3s;
+        }
+
+        .feature-card:hover {
+            border-color: rgba(236, 72, 153, 0.3);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .feature-card p {
+            color: #9ca3af;
+            line-height: 1.5;
+            font-size: 0.95rem;
+        }
+
+        /* Sound packs */
+        .sound-packs {
+            padding: 4rem 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .sound-packs h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .sound-packs .subtitle {
+            color: #9ca3af;
+            margin-bottom: 2rem;
+        }
+
+        .pack-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            justify-content: center;
+        }
+
+        .pack-pill {
+            padding: 0.6rem 1.2rem;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 100px;
+            font-size: 0.9rem;
+            color: #d1d5db;
+        }
+
+        /* CTA bottom */
+        .cta-bottom {
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+
+        .cta-bottom h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-bottom p {
+            color: #9ca3af;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            color: #4b5563;
+            font-size: 0.85rem;
+        }
+
+        footer a {
+            color: #6b7280;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: #9ca3af;
+        }
+
+        @media (max-width: 640px) {
+            h1 { font-size: 2.2rem; }
+            .tagline { font-size: 1.1rem; }
+            .features h2, .sound-packs h2, .cta-bottom h2 { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+<section class="hero">
+    <img src="/icon.png" alt="SlapMyMac" class="app-icon">
+    <h1>SlapMyMac</h1>
+    <p class="tagline">Your MacBook has feelings. Slap it — it yells back. Move the lid — it creaks like a door, revs like an engine, or plays violin.</p>
+    <div class="cta-group">
+        <a href="https://buy.polar.sh/polar_cl_ZqkQpyd7cITxS5dUGLZf8qyuVtjRtr55HMGPB0te0aL" class="btn-primary">
+            Buy License — $2.99
+        </a>
+        <a href="#download" class="btn-secondary">Download</a>
+    </div>
+    <p class="price-tag">One-time purchase. Lifetime access. No subscription.</p>
+    <p class="requirements">macOS 14+ (Sonoma) · Apple Silicon M1+ required</p>
+</section>
+
+<section class="features">
+    <h2>Two sensors. Infinite fun.</h2>
+    <div class="feature-grid">
+        <div class="feature-card">
+            <div class="feature-icon">👋</div>
+            <h3>Slap Detection</h3>
+            <p>Built-in accelerometer detects taps, slaps, and hits. Force-proportional — gentle tap whispers, full slap screams.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">📐</div>
+            <h3>Lid Movement</h3>
+            <p>Lid angle sensor tracks every degree. Open the lid — hear a creak. Close it — engine shuts down. Move it — play violin.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">🎛️</div>
+            <h3>Menu Bar App</h3>
+            <p>Lives in your menu bar. Zero dock clutter. Adjust sensitivity, cooldown, and volume with inline sliders.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">🎵</div>
+            <h3>142+ Sound Clips</h3>
+            <p>8 slap packs, 4 lid sound categories, direction-aware engines, and instrument duets. Switch sounds on the fly.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">⚡</div>
+            <h3>Instant Response</h3>
+            <p>Raw delta detection — zero smoothing lag. Sound starts the instant you move. Stops the instant you don't.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">💾</div>
+            <h3>Remembers Everything</h3>
+            <p>Settings persist across restarts. Your sound pack, sensitivity, and lifetime slap count — all saved.</p>
+        </div>
+    </div>
+</section>
+
+<section class="sound-packs">
+    <h2>8 slap packs. 30+ lid sounds.</h2>
+    <p class="subtitle">Something for every mood.</p>
+    <div class="pack-list">
+        <span class="pack-pill">😫 Pain</span>
+        <span class="pack-pill">😏 Sexy</span>
+        <span class="pack-pill">💀 Halo</span>
+        <span class="pack-pill">💨 Fart</span>
+        <span class="pack-pill">🎩 Gentleman</span>
+        <span class="pack-pill">🤬 WTF</span>
+        <span class="pack-pill">🐸 Meme</span>
+        <span class="pack-pill">🚪 Door Creaks</span>
+        <span class="pack-pill">🏎️ Engines</span>
+        <span class="pack-pill">🔧 Struggling</span>
+        <span class="pack-pill">🎻 Instruments</span>
+    </div>
+</section>
+
+<section class="cta-bottom" id="download">
+    <h2>Less than your coffee.</h2>
+    <p>$2.99 one time. Lifetime access. Your MacBook will never be the same.</p>
+    <a href="https://buy.polar.sh/polar_cl_ZqkQpyd7cITxS5dUGLZf8qyuVtjRtr55HMGPB0te0aL" class="btn-primary">
+        Buy SlapMyMac — $2.99
+    </a>
+</section>
+
+<footer>
+    <p>© 2026 <a href="https://cepalabs.com">CEPALabs SH.P.K.</a> · <a href="/privacy.html">Privacy Policy</a> · <a href="/terms.html">Terms</a></p>
+</footer>
+
+</body>
+</html>

@@ -4,22 +4,89 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SlapMyMac — Your MacBook Has Feelings</title>
-    <meta name="description" content="Slap your MacBook. It yells back. Move the lid — it creaks, revs, and plays music. 8 sound packs, 30+ lid sounds. $2.99 one-time.">
+    <meta name="description" content="Slap your MacBook. It yells back. Move the lid — it creaks, revs, plays violin. 8 sound packs, 142+ clips. Download free, activate for $2.99.">
     <meta property="og:title" content="SlapMyMac — Your MacBook Has Feelings">
-    <meta property="og:description" content="Slap your MacBook. It talks back. Yes, really.">
-    <meta property="og:type" content="website">
+    <meta property="og:description" content="Slap your MacBook. It talks back. Move the lid. It makes sounds. Yes, really.">
+    <meta property="og:image" content="https://slapmymac.com/icon.png">
     <meta property="og:url" content="https://slapmymac.com">
+    <meta name="twitter:card" content="summary_large_image">
     <link rel="icon" type="image/png" href="/icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --bg: #09090b;
+            --bg-card: #18181b;
+            --bg-card-hover: #1f1f23;
+            --border: #27272a;
+            --text: #fafafa;
+            --text-muted: #a1a1aa;
+            --text-dim: #71717a;
+            --accent: #ec4899;
+            --accent-hover: #f472b6;
+            --accent-glow: rgba(236, 72, 153, 0.15);
+            --purple: #a855f7;
+            --green: #22c55e;
+            --radius: 16px;
+        }
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', sans-serif;
-            background: #0a0a0f;
-            color: #fff;
-            overflow-x: hidden;
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            -webkit-font-smoothing: antialiased;
+            line-height: 1.6;
         }
 
+        /* Nav */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(9, 9, 11, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-decoration: none;
+            color: var(--text);
+        }
+
+        .nav-logo img {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover { color: var(--text); }
+
+        /* Hero */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -27,309 +94,464 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 2rem;
+            padding: 8rem 2rem 4rem;
             position: relative;
+            overflow: hidden;
         }
 
         .hero::before {
             content: '';
             position: absolute;
-            top: -50%;
+            top: -200px;
             left: 50%;
             transform: translateX(-50%);
-            width: 800px;
-            height: 800px;
-            background: radial-gradient(circle, rgba(236, 72, 153, 0.15) 0%, transparent 70%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
             pointer-events: none;
         }
 
-        .app-icon {
-            width: 120px;
-            height: 120px;
-            border-radius: 26px;
+        .hero-icon {
+            width: 100px;
+            height: 100px;
+            border-radius: 24px;
             margin-bottom: 2rem;
-            box-shadow: 0 20px 60px rgba(236, 72, 153, 0.3);
+            box-shadow: 0 20px 60px rgba(236, 72, 153, 0.25);
+            animation: float 3s ease-in-out infinite;
         }
 
-        h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, #fff 0%, #ec4899 100%);
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            max-width: 700px;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--accent), var(--purple));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .tagline {
-            font-size: 1.4rem;
-            color: #9ca3af;
-            max-width: 500px;
-            line-height: 1.6;
+        .hero-sub {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            max-width: 480px;
             margin-bottom: 2.5rem;
+            line-height: 1.7;
         }
 
-        .cta-group {
+        .hero-cta {
             display: flex;
-            gap: 1rem;
+            flex-direction: column;
             align-items: center;
-            flex-wrap: wrap;
-            justify-content: center;
+            gap: 0.8rem;
         }
 
-        .btn-primary {
+        .btn-download {
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
-            padding: 1rem 2rem;
-            background: linear-gradient(135deg, #ec4899, #8b5cf6);
-            color: #fff;
+            gap: 0.6rem;
+            padding: 1rem 2.2rem;
+            background: var(--text);
+            color: var(--bg);
             text-decoration: none;
             border-radius: 14px;
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             font-weight: 600;
             transition: transform 0.2s, box-shadow 0.2s;
-            box-shadow: 0 8px 30px rgba(236, 72, 153, 0.4);
         }
 
-        .btn-primary:hover {
+        .btn-download:hover {
             transform: translateY(-2px);
-            box-shadow: 0 12px 40px rgba(236, 72, 153, 0.5);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.15);
         }
 
-        .btn-secondary {
-            padding: 1rem 2rem;
-            background: rgba(255, 255, 255, 0.08);
-            color: #fff;
-            text-decoration: none;
-            border-radius: 14px;
-            font-size: 1.1rem;
-            font-weight: 500;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: background 0.2s;
+        .btn-download svg {
+            width: 20px;
+            height: 20px;
         }
 
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.12);
-        }
-
-        .price-tag {
-            margin-top: 1rem;
-            font-size: 0.95rem;
-            color: #6b7280;
-        }
-
-        .requirements {
-            margin-top: 0.5rem;
+        .hero-meta {
             font-size: 0.85rem;
-            color: #4b5563;
+            color: var(--text-dim);
         }
 
-        /* Features */
-        .features {
+        .hero-price {
+            margin-top: 0.3rem;
+            font-size: 0.85rem;
+            color: var(--text-dim);
+        }
+
+        /* Section */
+        section {
             padding: 6rem 2rem;
-            max-width: 1000px;
+            max-width: 900px;
             margin: 0 auto;
         }
 
-        .features h2 {
-            font-size: 2.2rem;
-            text-align: center;
-            margin-bottom: 3rem;
-            font-weight: 700;
+        .section-label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent);
+            margin-bottom: 0.8rem;
         }
 
-        .feature-grid {
+        section h2 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+        }
+
+        section .desc {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin-bottom: 3rem;
+        }
+
+        /* Feature cards */
+        .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1rem;
         }
 
         .feature-card {
-            padding: 2rem;
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 16px;
-            transition: border-color 0.3s;
+            padding: 1.8rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            transition: border-color 0.3s, background 0.3s;
         }
 
         .feature-card:hover {
             border-color: rgba(236, 72, 153, 0.3);
+            background: var(--bg-card-hover);
         }
 
-        .feature-icon {
-            font-size: 2rem;
-            margin-bottom: 1rem;
+        .feature-card .icon {
+            font-size: 1.6rem;
+            margin-bottom: 0.8rem;
         }
 
         .feature-card h3 {
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
+            font-size: 1.05rem;
             font-weight: 600;
+            margin-bottom: 0.4rem;
         }
 
         .feature-card p {
-            color: #9ca3af;
+            font-size: 0.9rem;
+            color: var(--text-muted);
             line-height: 1.5;
-            font-size: 0.95rem;
         }
 
         /* Sound packs */
-        .sound-packs {
-            padding: 4rem 2rem;
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .sound-packs h2 {
-            font-size: 2.2rem;
-            margin-bottom: 1rem;
-        }
-
-        .sound-packs .subtitle {
-            color: #9ca3af;
+        .packs-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
             margin-bottom: 2rem;
         }
 
-        .pack-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.8rem;
-            justify-content: center;
+        .pack-chip {
+            padding: 0.5rem 1rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            transition: border-color 0.2s, color 0.2s;
+            cursor: default;
         }
 
-        .pack-pill {
-            padding: 0.6rem 1.2rem;
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 100px;
+        .pack-chip:hover {
+            border-color: var(--accent);
+            color: var(--text);
+        }
+
+        .pack-chip.highlight {
+            border-color: var(--accent);
+            color: var(--text);
+            background: rgba(236, 72, 153, 0.08);
+        }
+
+        /* Differentiator */
+        .diff-banner {
+            padding: 2.5rem;
+            background: linear-gradient(135deg, rgba(236, 72, 153, 0.08), rgba(168, 85, 247, 0.08));
+            border: 1px solid rgba(236, 72, 153, 0.15);
+            border-radius: var(--radius);
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+        .diff-banner h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .diff-banner p {
+            color: var(--text-muted);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        /* FAQ */
+        .faq-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .faq-item {
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .faq-q {
+            padding: 1.2rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 0.95rem;
+            background: var(--bg-card);
+            transition: background 0.2s;
+        }
+
+        .faq-q:hover { background: var(--bg-card-hover); }
+
+        .faq-q::after {
+            content: '+';
+            font-size: 1.3rem;
+            color: var(--text-dim);
+            transition: transform 0.3s;
+        }
+
+        .faq-item.open .faq-q::after {
+            transform: rotate(45deg);
+        }
+
+        .faq-a {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s;
+        }
+
+        .faq-item.open .faq-a {
+            max-height: 200px;
+            padding: 0 1.5rem 1.2rem;
+        }
+
+        .faq-a p {
+            color: var(--text-muted);
             font-size: 0.9rem;
-            color: #d1d5db;
+            line-height: 1.6;
         }
 
         /* CTA bottom */
         .cta-bottom {
-            padding: 6rem 2rem;
             text-align: center;
+            padding: 6rem 2rem;
         }
 
         .cta-bottom h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
+            font-size: 2.2rem;
+            margin-bottom: 0.8rem;
         }
 
         .cta-bottom p {
-            color: #9ca3af;
+            color: var(--text-muted);
             margin-bottom: 2rem;
-            font-size: 1.1rem;
+            font-size: 1.05rem;
         }
 
         /* Footer */
         footer {
-            padding: 3rem 2rem;
+            padding: 2rem;
             text-align: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.06);
-            color: #4b5563;
-            font-size: 0.85rem;
+            border-top: 1px solid var(--border);
+            font-size: 0.8rem;
+            color: var(--text-dim);
         }
 
         footer a {
-            color: #6b7280;
+            color: var(--text-dim);
             text-decoration: none;
         }
 
-        footer a:hover {
-            color: #9ca3af;
-        }
+        footer a:hover { color: var(--text-muted); }
 
         @media (max-width: 640px) {
-            h1 { font-size: 2.2rem; }
-            .tagline { font-size: 1.1rem; }
-            .features h2, .sound-packs h2, .cta-bottom h2 { font-size: 1.8rem; }
+            nav { padding: 0.8rem 1.2rem; }
+            .hero { padding: 7rem 1.5rem 3rem; }
+            section { padding: 4rem 1.5rem; }
         }
     </style>
 </head>
 <body>
 
+<nav>
+    <a href="/" class="nav-logo">
+        <img src="/icon.png" alt="SlapMyMac">
+        SlapMyMac
+    </a>
+    <div class="nav-links">
+        <a href="#faq">FAQ</a>
+        <a href="#download">Download</a>
+    </div>
+</nav>
+
 <section class="hero">
-    <img src="/icon.png" alt="SlapMyMac" class="app-icon">
-    <h1>SlapMyMac</h1>
-    <p class="tagline">Your MacBook has feelings. Slap it — it yells back. Move the lid — it creaks like a door, revs like an engine, or plays violin.</p>
-    <div class="cta-group">
-        <a href="https://buy.polar.sh/polar_cl_ZqkQpyd7cITxS5dUGLZf8qyuVtjRtr55HMGPB0te0aL" class="btn-primary">
-            Buy License — $2.99
+    <img src="/icon.png" alt="SlapMyMac" class="hero-icon">
+    <h1>Slap your MacBook.<br><span>It screams back.</span></h1>
+    <p class="hero-sub">Your MacBook has feelings now. Slap it — it yells. Move the lid — it creaks like an old door, revs like an engine, or plays violin. That's it. That's the app.</p>
+    <div class="hero-cta">
+        <a href="#download" class="btn-download">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download for Mac
         </a>
-        <a href="#download" class="btn-secondary">Download</a>
+        <p class="hero-meta">macOS 14+ (Sonoma) · Apple Silicon M1+ required</p>
+        <p class="hero-price">$2.99 one time · Lifetime access · No subscription</p>
     </div>
-    <p class="price-tag">One-time purchase. Lifetime access. No subscription.</p>
-    <p class="requirements">macOS 14+ (Sonoma) · Apple Silicon M1+ required</p>
 </section>
 
-<section class="features">
+<section>
+    <p class="section-label">How it works</p>
     <h2>Two sensors. Infinite fun.</h2>
-    <div class="feature-grid">
+    <p class="desc">SlapMyMac reads your MacBook's built-in accelerometer and lid angle sensor. It hides in your menu bar and responds to every slap, tap, and lid movement.</p>
+
+    <div class="features-grid">
         <div class="feature-card">
-            <div class="feature-icon">👋</div>
+            <div class="icon">👋</div>
             <h3>Slap Detection</h3>
-            <p>Built-in accelerometer detects taps, slaps, and hits. Force-proportional — gentle tap whispers, full slap screams.</p>
+            <p>Force-proportional volume — gentle tap whispers, full slap screams. Adjustable sensitivity from butterfly landing to full commitment.</p>
         </div>
         <div class="feature-card">
-            <div class="feature-icon">📐</div>
-            <h3>Lid Movement</h3>
-            <p>Lid angle sensor tracks every degree. Open the lid — hear a creak. Close it — engine shuts down. Move it — play violin.</p>
+            <div class="icon">📐</div>
+            <h3>Lid Sounds</h3>
+            <p>Open the lid — hear a creak. Close it — engine shuts down. Move it back and forth — play violin. 30+ sounds respond to every degree.</p>
         </div>
         <div class="feature-card">
-            <div class="feature-icon">🎛️</div>
-            <h3>Menu Bar App</h3>
-            <p>Lives in your menu bar. Zero dock clutter. Adjust sensitivity, cooldown, and volume with inline sliders.</p>
+            <div class="icon">🏎️</div>
+            <h3>Direction Aware</h3>
+            <p>Engine sounds know which way you're going. Open = ignition. Close = shutdown. Struggling engines restart every time you try.</p>
         </div>
         <div class="feature-card">
-            <div class="feature-icon">🎵</div>
-            <h3>142+ Sound Clips</h3>
-            <p>8 slap packs, 4 lid sound categories, direction-aware engines, and instrument duets. Switch sounds on the fly.</p>
+            <div class="icon">🎻</div>
+            <h3>Play Music</h3>
+            <p>Instruments use two notes — one for opening, one for closing. Move the lid back and forth like bowing a string. Your MacBook is now a violin.</p>
         </div>
         <div class="feature-card">
-            <div class="feature-icon">⚡</div>
+            <div class="icon">🎛️</div>
+            <h3>Menu Bar Only</h3>
+            <p>Zero dock clutter. Inline sliders for sensitivity and cooldown. Switch sounds on the fly. All settings persist across restarts.</p>
+        </div>
+        <div class="feature-card">
+            <div class="icon">⚡</div>
             <h3>Instant Response</h3>
-            <p>Raw delta detection — zero smoothing lag. Sound starts the instant you move. Stops the instant you don't.</p>
+            <p>Raw delta detection — zero smoothing lag. Sound starts the frame you move. Stops the frame you don't. No phantom sounds from jitter.</p>
         </div>
-        <div class="feature-card">
-            <div class="feature-icon">💾</div>
-            <h3>Remembers Everything</h3>
-            <p>Settings persist across restarts. Your sound pack, sensitivity, and lifetime slap count — all saved.</p>
-        </div>
+    </div>
+
+    <div class="diff-banner">
+        <h3>The only slap app with lid sounds.</h3>
+        <p>Creaks, engines, instruments, direction-aware playback, wake-from-sleep detection — no other app does this.</p>
     </div>
 </section>
 
-<section class="sound-packs">
-    <h2>8 slap packs. 30+ lid sounds.</h2>
-    <p class="subtitle">Something for every mood.</p>
-    <div class="pack-list">
-        <span class="pack-pill">😫 Pain</span>
-        <span class="pack-pill">😏 Sexy</span>
-        <span class="pack-pill">💀 Halo</span>
-        <span class="pack-pill">💨 Fart</span>
-        <span class="pack-pill">🎩 Gentleman</span>
-        <span class="pack-pill">🤬 WTF</span>
-        <span class="pack-pill">🐸 Meme</span>
-        <span class="pack-pill">🚪 Door Creaks</span>
-        <span class="pack-pill">🏎️ Engines</span>
-        <span class="pack-pill">🔧 Struggling</span>
-        <span class="pack-pill">🎻 Instruments</span>
+<section>
+    <p class="section-label">Sound library</p>
+    <h2>8 slap packs. 30+ lid sounds. 142+ clips.</h2>
+    <p class="desc">Something for every mood and every meeting you want to derail.</p>
+
+    <h3 style="font-size: 1rem; color: var(--text-muted); margin-bottom: 0.8rem;">Slap Sounds</h3>
+    <div class="packs-row">
+        <span class="pack-chip highlight">😫 Pain — "Ouch! Hey! Stop it!"</span>
+        <span class="pack-chip">😏 Sexy — 78 clips, escalating</span>
+        <span class="pack-chip">💀 Halo — Death sound effects</span>
+        <span class="pack-chip">💨 Fart — No explanation needed</span>
+        <span class="pack-chip">🎩 Gentleman — Refined protests</span>
+        <span class="pack-chip">🤬 WTF — Screams & chaos</span>
+        <span class="pack-chip">🐸 Meme — Vine Boom, Bruh, Oof</span>
+    </div>
+
+    <h3 style="font-size: 1rem; color: var(--text-muted); margin-bottom: 0.8rem;">Lid Sounds</h3>
+    <div class="packs-row">
+        <span class="pack-chip">🚪 Creaks & Doors</span>
+        <span class="pack-chip">🏎️ Engine Start/Stop</span>
+        <span class="pack-chip">🔧 Engine Struggling</span>
+        <span class="pack-chip">🎻 Violin</span>
+        <span class="pack-chip">🎸 Guitar</span>
+        <span class="pack-chip">⛪ Cathedral Organ</span>
+        <span class="pack-chip">🔔 Tibetan Bowl</span>
+        <span class="pack-chip">🎵 Shepard Tone</span>
+        <span class="pack-chip">🎺 Bugle</span>
+    </div>
+</section>
+
+<section id="faq">
+    <p class="section-label">FAQ</p>
+    <h2>Questions you might have.</h2>
+
+    <div class="faq-list">
+        <div class="faq-item">
+            <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Will this void my warranty?</div>
+            <div class="faq-a"><p>No. SlapMyMac only reads sensors — it doesn't modify anything. But we are not responsible for what happens if you slap too hard. Slap responsibly.</p></div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Does it work on Intel Macs?</div>
+            <div class="faq-a"><p>No. The accelerometer and lid angle sensor are only available on Apple Silicon MacBooks (M1, M2, M3, M4 and later).</p></div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">What about battery life?</div>
+            <div class="faq-a"><p>Minimal impact. The sensor polling is lightweight. When lid sounds are off, it drops to 30Hz. When paused, near zero.</p></div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Does it trigger while typing?</div>
+            <div class="faq-a"><p>No. The detection threshold filters out keyboard vibrations. Only actual taps, slaps, and intentional impacts trigger sounds.</p></div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Can I add my own sounds?</div>
+            <div class="faq-a"><p>Not yet — but it's on the roadmap. Custom sound pack import is planned for a future update.</p></div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Can I get a refund?</div>
+            <div class="faq-a"><p>Yes. 14-day full refund, no questions asked. Email hello@cepalabs.com.</p></div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">What about lid sounds — do I need to slap for those?</div>
+            <div class="faq-a"><p>No! Lid sounds respond to screen movement. Open the lid = creak or engine start. Close it = shutdown. Move it back and forth = play instruments. No slapping required.</p></div>
+        </div>
     </div>
 </section>
 
 <section class="cta-bottom" id="download">
     <h2>Less than your coffee.</h2>
-    <p>$2.99 one time. Lifetime access. Your MacBook will never be the same.</p>
-    <a href="https://buy.polar.sh/polar_cl_ZqkQpyd7cITxS5dUGLZf8qyuVtjRtr55HMGPB0te0aL" class="btn-primary">
-        Buy SlapMyMac — $2.99
+    <p>$2.99 one time. Your MacBook will never be the same.</p>
+    <a href="https://buy.polar.sh/polar_cl_ZqkQpyd7cITxS5dUGLZf8qyuVtjRtr55HMGPB0te0aL" class="btn-download" style="background: var(--text); color: var(--bg);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download for Mac
     </a>
+    <p style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-dim);">Download free. Activate with license key inside the app.</p>
 </section>
 
 <footer>
-    <p>© 2026 <a href="https://cepalabs.com">CEPALabs SH.P.K.</a> · <a href="/privacy.html">Privacy Policy</a> · <a href="/terms.html">Terms</a></p>
+    <p>© 2026 <a href="https://cepalabs.com">CEPALabs SH.P.K.</a> · <a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a> · <a href="mailto:hello@cepalabs.com">Contact</a></p>
 </footer>
 
 </body>

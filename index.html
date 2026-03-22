@@ -17,18 +17,20 @@
 :root {
   --serif: 'DM Serif Display', Georgia, serif;
   --sans: 'DM Sans', system-ui, sans-serif;
-  --bg: #FAF7F2; --bg2: #F0EBE3; --card: #fff; --text: #1a1a1a; --mid: #555; --faint: #999; --border: #e4dfd8;
+  --bg: #FFF5F7; --bg2: #FDE8EE; --card: #fff; --text: #1a1a1a; --mid: #555; --faint: #999; --border: #f0d4dc;
   --pink: #E63E6D; --pink-soft: #fce8ef; --purple: #6C3CE0; --purple-soft: #ede5ff; --green: #16a34a; --green-soft: #dcfce7;
   --glow: rgba(230,62,109,0.1); --shadow: rgba(0,0,0,0.06);
+  --bg-glow1: #FBBDD6; --bg-glow2: #FDE4EE;
 }
 @media(prefers-color-scheme:dark){:root{
   --bg:#111110;--bg2:#1a1918;--card:#1e1e1c;--text:#edece8;--mid:#a8a69f;--faint:#6b695f;--border:#2a2928;
   --pink:#f06292;--pink-soft:rgba(240,98,146,0.12);--purple:#a78bfa;--purple-soft:rgba(167,139,250,0.1);
   --green:#4ade80;--green-soft:rgba(74,222,128,0.12);--glow:rgba(240,98,146,0.08);--shadow:rgba(0,0,0,0.3);
+  --bg-glow1: #2a1520; --bg-glow2: #1a1215;
 }}
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden;background-image:radial-gradient(ellipse at 50% 0%,var(--bg-glow1) 0%,var(--bg-glow2) 35%,var(--bg) 70%);background-attachment:fixed}
 ::selection{background:var(--pink);color:#fff}
 a{color:inherit}img{max-width:100%;display:block}
 
@@ -182,7 +184,7 @@ footer a:hover{color:var(--mid)}
     <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 3a1 1 0 011 1v7.586l2.293-2.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 111.414-1.414L9 11.586V4a1 1 0 011-1z"/><path d="M3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"/></svg>
     Download for Mac
   </a>
-  <p class="hero-info">macOS 14+ · Apple Silicon M1+ · $2.99 one-time · no subscription</p>
+  <p class="hero-info">macOS 14+ (Sonoma) · Apple Silicon M1+ required</p>
 </section>
 
 <!-- ═══════════════ HEAR IT (the hook) ═══════════════ -->

@@ -354,13 +354,13 @@ footer a:hover{color:var(--mid)}
     <p class="sec-tag">FAQ</p>
     <h2>Answers, before you ask.</h2>
     <div>
-      <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Will this void my warranty?<span class="ar">+</span></div><div class="faq-a"><p>Nope. Reads sensors, doesn't modify anything. But if you slap hard enough to break something — that's between you and AppleCare.</p></div></div>
-      <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Does it work on Intel Macs?<span class="ar">+</span></div><div class="faq-a"><p>No. The accelerometer only exists in Apple Silicon (M1+). Intel Macs don't have the hardware. Sorry, grandpa.</p></div></div>
-      <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">What about battery?<span class="ar">+</span></div><div class="faq-a"><p>Barely noticeable. Polls at 30Hz when idle, near zero when paused. Your battery will be fine.</p></div></div>
-      <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Does it trigger while typing?<span class="ar">+</span></div><div class="faq-a"><p>No. Filters out keyboard vibrations. Only real slaps and taps trigger sounds. Your Slack messages are safe.</p></div></div>
-      <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">What about lid sounds? Do I need to slap?<span class="ar">+</span></div><div class="faq-a"><p>No slapping needed! Lid sounds respond to screen movement only. Open → creak. Close → engine off. Back and forth → music. Separate feature.</p></div></div>
-      <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Can I add my own sounds?<span class="ar">+</span></div><div class="faq-a"><p>Not yet — custom packs are coming in v1.1. Stay tuned.</p></div></div>
-      <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Refund?<span class="ar">+</span></div><div class="faq-a"><p>14 days, no questions. Email hello@cepalabs.com.</p></div></div>
+      <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Will I void my MacBook warranty?<span class="ar">+</span></div><div class="faq-a"><p>Probably not — but we're not lawyers. SlapMyMac uses the built-in accelerometer and lid sensor, no hardware mods. That said, if you slap hard enough to crack your screen, that's on you.</p></div></div>
+      <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Does it work on Intel Macs?<span class="ar">+</span></div><div class="faq-a"><p>No. SlapMyMac requires an M1+ MacBook because it reads the built-in accelerometer and lid angle sensor, which aren't available on Intel Macs.</p></div></div>
+      <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Can I add my own sounds?<span class="ar">+</span></div><div class="faq-a"><p>Not yet — but it's on the roadmap. For now you get 142+ clips across 8 voice packs plus 30+ lid sounds, which is more than enough to annoy everyone around you.</p></div></div>
+      <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Does it drain my battery?<span class="ar">+</span></div><div class="faq-a"><p>Barely. SlapMyMac polls the sensors at low frequency and uses less energy than most menu bar apps. When paused, it uses essentially nothing.</p></div></div>
+      <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Will it trigger during normal typing?<span class="ar">+</span></div><div class="faq-a"><p>No. The detection pipeline uses multiple algorithms that vote on whether a real slap happened. Typing, closing the lid gently, or bumping your desk won't trigger it — unless you crank the sensitivity to max.</p></div></div>
+      <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">What about lid sounds? Do I need to slap for those?<span class="ar">+</span></div><div class="faq-a"><p>No slapping needed! Lid sounds respond purely to screen movement. Open → creak or engine start. Close → engine shutdown. Back and forth → play instruments. It's a completely separate feature.</p></div></div>
+      <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Is there a Windows version?<span class="ar">+</span></div><div class="faq-a"><p>No. This is a Mac-only experience. Windows laptops don't have feelings.</p></div></div>
     </div>
   </div>
 </div>
@@ -377,7 +377,7 @@ footer a:hover{color:var(--mid)}
 </section>
 
 <footer>
-  <span>© 2026 <a href="https://cepalabs.com">CEPALabs</a></span>
+  <span>© 2026 CEPALabs SH.P.K.</span>
   <div class="f-links">
     <a href="/privacy.html">Privacy</a>
     <a href="/terms.html">Terms</a>

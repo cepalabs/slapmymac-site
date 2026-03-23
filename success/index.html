@@ -16,6 +16,7 @@
         .step-text { color: #d1d5db; font-size: 1.05rem; line-height: 1.5; }
         .step-text strong { color: #fff; }
         .step-text .hint { color: #6b7280; font-size: 0.9rem; display: block; margin-top: 4px; }
+        .auto-note { background: rgba(236,72,153,0.1); border: 1px solid rgba(236,72,153,0.2); border-radius: 12px; padding: 1rem 1.25rem; color: #f9a8d4; font-size: 0.95rem; line-height: 1.5; margin-bottom: 1.5rem; }
         .help { color: #6b7280; font-size: 0.9rem; margin-top: 1.5rem; }
         .help a { color: #ec4899; text-decoration: none; }
         a.back { color: #ec4899; text-decoration: none; display: inline-block; margin-top: 1.5rem; }
@@ -24,30 +25,27 @@
 <body>
     <div class="container">
         <h1>Payment successful!</h1>
-        <p class="subtitle">You're almost there — just one step to activate.</p>
+        <p class="subtitle">You're almost there — just copy your key.</p>
 
         <div class="steps">
             <div class="step">
                 <div class="step-num">1</div>
                 <div class="step-text">
                     <strong>Check your email</strong> for a message from Polar
-                    <span class="hint">Open the email and click the link to view your license key</span>
+                    <span class="hint">Open the email and click the link to see your license key</span>
                 </div>
             </div>
             <div class="step">
                 <div class="step-num">2</div>
                 <div class="step-text">
-                    <strong>Copy your license key</strong> from the Polar page
+                    <strong>Copy the license key</strong>
                     <span class="hint">It looks like: SLAP-XXXX-XXXX-XXXX-XXXX</span>
                 </div>
             </div>
-            <div class="step">
-                <div class="step-num">3</div>
-                <div class="step-text">
-                    <strong>Paste it in SlapMyMac</strong> and click Activate
-                    <span class="hint">The license field is in the onboarding window or under "Activate License" in the menu bar</span>
-                </div>
-            </div>
+        </div>
+
+        <div class="auto-note">
+            SlapMyMac will detect the key automatically when you copy it — just switch back to the app!
         </div>
 
         <p class="help">Key not arriving? Check your spam folder or <a href="https://polar.sh/cepalabs/portal">recover it here</a>.</p>

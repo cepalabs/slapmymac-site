@@ -76,7 +76,7 @@ a{color:inherit}img{max-width:100%;display:block}
 .sec .lead{font-size:1rem;color:var(--mid);max-width:520px;margin-bottom:2.4rem}
 
 /* ═══ SECTION 1: HEAR IT ═══ (the hook — sound first) */
-.sound-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.6rem}
+.sound-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem}
 @media(max-width:600px){.sound-grid{grid-template-columns:repeat(2,1fr)}}
 
 .sound-btn{
@@ -108,29 +108,6 @@ a{color:inherit}img{max-width:100%;display:block}
 .diff{padding:2rem;background:linear-gradient(135deg,var(--pink-soft),var(--purple-soft));border:1px solid transparent;border-radius:16px;text-align:center;margin:2rem 0}
 .diff h3{font-family:var(--serif);font-size:1.2rem;margin-bottom:.3rem}
 .diff p{font-size:.9rem;color:var(--mid)}
-
-/* ═══ VOICE SELECTOR ═══ */
-.vs{border:1px solid var(--border);border-radius:14px;overflow:hidden;background:var(--card)}
-.vs-tabs{display:flex;flex-wrap:wrap;border-bottom:1px solid var(--border)}
-.vs-tab{flex:1;min-width:70px;padding:.65rem .4rem;background:none;border:none;border-right:1px solid var(--border);font-family:var(--sans);font-size:.78rem;color:var(--mid);cursor:pointer;transition:all .15s}
-.vs-tab:last-child{border-right:none}
-.vs-tab:hover{background:var(--bg2);color:var(--text)}
-.vs-tab.active{background:var(--pink-soft);color:var(--pink);font-weight:600}
-.vs-body{padding:1.2rem 1.4rem;min-height:80px}
-.vs-name{font-family:var(--serif);font-size:1.1rem;display:block}
-.vs-count{font-size:.75rem;color:var(--faint);display:block;margin-bottom:.4rem}
-.vs-body p{font-size:.88rem;color:var(--mid);line-height:1.55}
-
-/* ═══ SLIDERS DEMO ═══ */
-.sliders{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.5rem}
-@media(max-width:600px){.sliders{grid-template-columns:1fr}}
-.sl{padding:1.2rem;border:1px solid var(--border);border-radius:12px;background:var(--card)}
-.sl-top{display:flex;justify-content:space-between;margin-bottom:.6rem}
-.sl-label{font-weight:600;font-size:.88rem}
-.sl-val{font-size:.85rem;color:var(--pink);font-weight:600;font-variant-numeric:tabular-nums}
-.sl input[type=range]{-webkit-appearance:none;width:100%;height:5px;border-radius:3px;background:var(--border);outline:none;cursor:pointer}
-.sl input::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--pink);cursor:pointer;box-shadow:0 2px 6px var(--glow)}
-.sl-hints{display:flex;justify-content:space-between;margin-top:.4rem;font-size:.68rem;color:var(--faint)}
 
 /* ROADMAP */
 .rm{margin-top:1.2rem}
@@ -192,7 +169,7 @@ footer a:hover{color:var(--mid)}
 <section class="hero">
   <img src="/icon.png" alt="SlapMyMac" class="hero-icon">
   <h1>Slap your MacBook.<br>It <em>screams</em> back.</h1>
-  <p class="hero-sub">Your laptop has feelings now. Slap it, move the lid, and hear it react with 142+ sounds. We're serious.</p>
+  <p class="hero-sub">Your laptop has feelings now. Slap it, move the lid, and hear it react with 190+ sounds. We're serious.</p>
   <a href="/SlapMyMac.dmg" class="btn-big">
     <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 3a1 1 0 011 1v7.586l2.293-2.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 111.414-1.414L9 11.586V4a1 1 0 011-1z"/><path d="M3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"/></svg>
     Download for Mac
@@ -256,6 +233,12 @@ footer a:hover{color:var(--mid)}
         <span class="sub">78 clips...</span>
         <span class="play-hint">▶ tap</span>
       </button>
+      <button class="sound-btn" onclick="playSound('yamete',this)">
+        <span class="emoji">🙈</span>
+        <span class="name">Yamete</span>
+        <span class="sub">19 clips...</span>
+        <span class="play-hint">▶ tap</span>
+      </button>
       <button class="sound-btn" onclick="playSound('creak',this)">
         <span class="emoji">🚪</span>
         <span class="name">Lid Creak</span>
@@ -278,7 +261,7 @@ footer a:hover{color:var(--mid)}
         <h3>Slap Detection</h3>
         <p>The accelerometer feels every tap, slap, and smack. Volume scales with force — soft tap is a whisper, full slap is chaos.</p>
         <ul>
-          <li>8 sound packs, 142+ clips</li>
+          <li>9 sound packs, 160+ clips</li>
           <li>Force-proportional volume</li>
           <li>Adjustable sensitivity</li>
           <li>Cooldown timer</li>
@@ -304,45 +287,6 @@ footer a:hover{color:var(--mid)}
   </div>
 </div>
 
-<!-- ═══════════════ ALL PACKS ═══════════════ -->
-<div class="sec" id="sounds">
-  <div class="wrap">
-    <p class="sec-tag">All sounds</p>
-    <h2>Eight moods of protest.</h2>
-    <p class="lead">Click a pack to hear what it sounds like and read the description.</p>
-
-    <div class="vs">
-      <div class="vs-tabs">
-        <button class="vs-tab active" onclick="sv(this,'pain')">😫 Pain</button>
-        <button class="vs-tab" onclick="sv(this,'sexy')">😏 Sexy</button>
-        <button class="vs-tab" onclick="sv(this,'halo')">💀 Halo</button>
-        <button class="vs-tab" onclick="sv(this,'fart')">💨 Fart</button>
-        <button class="vs-tab" onclick="sv(this,'gentleman')">🎩 Gent</button>
-        <button class="vs-tab" onclick="sv(this,'wtf')">🤬 WTF</button>
-        <button class="vs-tab" onclick="sv(this,'meme')">🐸 Meme</button>
-      </div>
-      <div class="vs-body">
-        <span class="vs-name" id="vn">Pain</span>
-        <span class="vs-count" id="vc">10 clips</span>
-        <p id="vt">Ouch. Ow. Hey, that hurts! Classic pain energy. The default for a reason.</p>
-      </div>
-    </div>
-
-    <div class="sliders">
-      <div class="sl">
-        <div class="sl-top"><span class="sl-label">Sensitivity</span><span class="sl-val" id="sv1">0.05g</span></div>
-        <input type="range" min="1" max="50" value="5" oninput="document.getElementById('sv1').textContent=(this.value/100).toFixed(2)+'g'">
-        <div class="sl-hints"><span>Butterfly landing</span><span>Full commitment</span></div>
-      </div>
-      <div class="sl">
-        <div class="sl-top"><span class="sl-label">Cooldown</span><span class="sl-val" id="sv2">1.0s</span></div>
-        <input type="range" min="1" max="30" value="10" oninput="document.getElementById('sv2').textContent=(this.value/10).toFixed(1)+'s'">
-        <div class="sl-hints"><span>Rapid-fire heckling</span><span>Dramatic pauses</span></div>
-      </div>
-    </div>
-  </div>
-</div>
-
 <!-- ═══════════════ ROADMAP ═══════════════ -->
 <div class="sec" id="roadmap">
   <div class="wrap">
@@ -351,15 +295,11 @@ footer a:hover{color:var(--mid)}
     <div class="rm">
       <div class="rm-item rm-done">
         <div class="rm-dot"></div>
-        <div><div class="rm-v">v1.0 <span class="rm-badge rm-shipped">Shipped</span></div><p>8 voice packs, 142+ clips, lid sounds, direction-aware engines, instruments, menu bar sliders.</p></div>
+        <div><div class="rm-v">v1.0 <span class="rm-badge rm-shipped">Shipped</span></div><p>9 sound packs, 190+ sounds, lid sounds, direction-aware engines, instruments, launch at login, auto-updates.</p></div>
       </div>
       <div class="rm-item">
         <div class="rm-dot"></div>
         <div><div class="rm-v">v1.1 <span class="rm-badge rm-soon">Soon</span></div><p>Custom sound packs — import your own MP3s. Record your cat, your boss, your ex.</p></div>
-      </div>
-      <div class="rm-item">
-        <div class="rm-dot"></div>
-        <div><div class="rm-v">v1.2</div><p>Launch at login, global shortcut, auto-updates.</p></div>
       </div>
       <div class="rm-item">
         <div class="rm-dot"></div>
@@ -377,7 +317,7 @@ footer a:hover{color:var(--mid)}
     <div>
       <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Will I void my MacBook warranty?<span class="ar">+</span></div><div class="faq-a"><p>Probably not — but we're not lawyers. SlapMyMac uses the built-in accelerometer and lid sensor, no hardware mods. That said, if you slap hard enough to crack your screen, that's on you.</p></div></div>
       <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Does it work on Intel Macs?<span class="ar">+</span></div><div class="faq-a"><p>No. SlapMyMac requires an M1+ MacBook because it reads the built-in accelerometer and lid angle sensor, which aren't available on Intel Macs.</p></div></div>
-      <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Can I add my own sounds?<span class="ar">+</span></div><div class="faq-a"><p>Not yet — but it's on the roadmap. For now you get 142+ clips across 8 voice packs plus 30+ lid sounds, which is more than enough to annoy everyone around you.</p></div></div>
+      <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Can I add my own sounds?<span class="ar">+</span></div><div class="faq-a"><p>Not yet — but it's on the roadmap. For now you get 160+ clips across 9 sound packs plus 30+ lid sounds, which is more than enough to annoy everyone around you.</p></div></div>
       <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Does it drain my battery?<span class="ar">+</span></div><div class="faq-a"><p>Barely. SlapMyMac polls the sensors at low frequency and uses less energy than most menu bar apps. When paused, it uses essentially nothing.</p></div></div>
       <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Will it trigger during normal typing?<span class="ar">+</span></div><div class="faq-a"><p>No. The detection pipeline uses multiple algorithms that vote on whether a real slap happened. Typing, closing the lid gently, or bumping your desk won't trigger it — unless you crank the sensitivity to max.</p></div></div>
       <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">What about lid sounds? Do I need to slap for those?<span class="ar">+</span></div><div class="faq-a"><p>No slapping needed! Lid sounds respond purely to screen movement. Open → creak or engine start. Close → engine shutdown. Back and forth → play instruments. It's a completely separate feature.</p></div></div>
@@ -450,25 +390,6 @@ function playSound(id, btn) {
   a.onended = () => { btn.classList.remove('playing'); currentAudio = null; };
 }
 
-// Voice selector
-const vd = {
-  pain:{n:'Pain',c:'10 clips',t:'Ouch. Ow. Hey, that hurts! Classic pain energy. The default for a reason.'},
-  sexy:{n:'Sexy',c:'78 clips',t:'Starts gentle. Gets intense. The more you slap, the more it escalates. 78 levels of regret.'},
-  halo:{n:'Halo',c:'9 clips',t:'Master Chief died for this. Iconic death sound effects from the Halo series.'},
-  fart:{n:'Fart',c:'10 clips',t:'No explanation needed. No dignity required. Pure, unfiltered flatulence.'},
-  gentleman:{n:'Gentleman',c:'10 clips',t:'Refined coughs, startled sighs, and the occasional dignified sneeze. For the classy slapper.'},
-  wtf:{n:'WTF',c:'10 clips',t:'Wilhelm screams, zombie growls, horrible laughs. When "ow" just doesn\'t cut it.'},
-  meme:{n:'Meme',c:'15 clips',t:'Vine Boom. Bruh. Oof. Emotional Damage. FBI Open Up. The internet\'s greatest hits.'}
-};
-function sv(btn, key) {
-  document.querySelectorAll('.vs-tab').forEach(t => t.classList.remove('active'));
-  btn.classList.add('active');
-  const v = vd[key];
-  document.getElementById('vn').textContent = v.n;
-  document.getElementById('vc').textContent = v.c;
-  document.getElementById('vt').textContent = v.t;
-  playSound(key, btn);
-}
 </script>
 </body>
 </html>

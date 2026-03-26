@@ -547,7 +547,22 @@ footer a:hover { color: var(--muted); }
   footer { flex-direction: column; text-align: center; }
   .video-section { padding: 0 1.4rem 3rem; }
   .hero::before { width: 350px; height: 350px; }
+  .toast { bottom:auto;top:1rem;right:1rem;left:1rem;max-width:none; }
 }
+
+/* ═══ PURCHASE TOAST ═══ */
+.toast{position:fixed;bottom:1.5rem;left:1.5rem;z-index:200;max-width:280px;display:flex;align-items:center;gap:.7rem;padding:.75rem 1rem;background:var(--card);border:1px solid var(--border);border-radius:12px;box-shadow:0 8px 30px rgba(0,0,0,.35);opacity:0;transform:translateY(20px);transition:opacity .4s,transform .4s;pointer-events:none}
+.toast.show{opacity:1;transform:translateY(0)}
+.toast-icon{font-size:1.3rem;flex-shrink:0}
+.toast-text{font-size:.78rem;line-height:1.4}
+.toast-name{font-weight:700;color:var(--text);display:block}
+.toast-action{color:var(--muted)}
+.toast-time{color:var(--dim);font-size:.68rem}
+
+/* ═══ SCROLL TO TOP ═══ */
+.scroll-top{position:fixed;bottom:1.5rem;right:1.5rem;z-index:200;width:42px;height:42px;border-radius:50%;background:var(--pink);color:#fff;border:none;cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(255,45,120,.3);opacity:0;transform:translateY(10px);transition:opacity .3s,transform .3s;pointer-events:none}
+.scroll-top.show{opacity:1;transform:translateY(0);pointer-events:auto}
+.scroll-top:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(255,45,120,.4)}
 </style>
 </head>
 <body>
@@ -801,6 +816,47 @@ document.querySelectorAll('.feat-card').forEach(card => {
     card.style.setProperty('--cy', (e.clientY - r.top) + 'px');
   });
 });
+
+/* ── Purchase toast (social proof) ──────────────────────── */
+const toastEl = document.getElementById('purchaseToast');
+const toastName = document.getElementById('toastName');
+const toastTime = document.getElementById('toastTime');
+const names = [
+  'Alex M.','Jordan K.','Sam T.','Chris R.','Taylor W.','Morgan L.',
+  'Casey P.','Riley B.','Jamie D.','Avery S.','Quinn H.','Drew N.',
+  'Blake F.','Skyler G.','Dakota J.','Reese C.','Finley O.','Harley V.',
+  'Emerson A.','Parker Z.','Rowan E.','Sage I.','River U.','Phoenix Y.'
+];
+const times = ['just now','2 min ago','5 min ago','8 min ago','12 min ago','15 min ago','20 min ago'];
+let toastTimeout;
+function showToast() {
+  toastName.textContent = names[Math.floor(Math.random()*names.length)];
+  toastTime.textContent = times[Math.floor(Math.random()*times.length)];
+  toastEl.classList.add('show');
+  clearTimeout(toastTimeout);
+  toastTimeout = setTimeout(() => toastEl.classList.remove('show'), 4000);
+}
+// First toast after 6s, then every 15-25s
+setTimeout(showToast, 6000);
+setInterval(showToast, 15000 + Math.random() * 10000);
+
+/* ── Scroll to top button ───────────────────────────────── */
+const scrollBtn = document.getElementById('scrollTop');
+window.addEventListener('scroll', () => {
+  scrollBtn.classList.toggle('show', window.scrollY > 600);
+}, { passive: true });
+scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 </script>
+
+<!-- Toast + Scroll to top -->
+<div class="toast" id="purchaseToast">
+  <span class="toast-icon">🎉</span>
+  <div class="toast-text">
+    <span class="toast-name" id="toastName">Alex M.</span>
+    <span class="toast-action">just purchased SlapMyMac</span><br>
+    <span class="toast-time" id="toastTime">2 min ago</span>
+  </div>
+</div>
+<button class="scroll-top" id="scrollTop" aria-label="Scroll to top">↑</button>
 </body>
 </html>

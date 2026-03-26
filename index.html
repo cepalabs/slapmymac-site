@@ -547,18 +547,18 @@ footer a:hover { color: var(--muted); }
   footer { flex-direction: column; text-align: center; }
   .video-section { padding: 0 1.4rem 3rem; }
   .hero::before { width: 350px; height: 350px; }
-  .toast { bottom:auto;top:4.5rem;right:1rem;left:1rem;max-width:none;border-radius:50px;padding:.7rem 1.2rem;gap:.6rem;justify-content:center;background:linear-gradient(135deg,rgba(255,45,120,0.18),rgba(255,45,120,0.06));border:1px solid rgba(255,45,120,0.25);box-shadow:0 4px 20px rgba(0,0,0,.25) }
-  .toast-icon{font-size:1.1rem} .toast-text{font-size:.8rem} .toast-name{font-size:.8rem}
+  .toast{bottom:auto;top:3.5rem;right:.8rem;left:auto;padding:.5rem .9rem;gap:.5rem;border-radius:10px;box-shadow:0 4px 16px rgba(0,0,0,.3)}
+  .toast-icon{font-size:1rem} .toast-text{font-size:.72rem} .toast-name{font-size:.75rem}
 }
 
 /* ═══ PURCHASE TOAST ═══ */
-.toast{position:fixed;bottom:5rem;right:1.5rem;z-index:200;max-width:340px;display:flex;align-items:center;gap:1rem;padding:1rem 1.4rem;background:var(--card);border:1px solid var(--border);border-radius:14px;box-shadow:0 12px 40px rgba(0,0,0,.4);opacity:0;transform:translateY(20px);transition:opacity .4s,transform .4s;pointer-events:none}
+.toast{position:fixed;bottom:5rem;right:2rem;z-index:200;display:flex;align-items:center;gap:1rem;padding:1.2rem 1.8rem;background:var(--card);border:1px solid var(--border);border-radius:16px;box-shadow:0 12px 40px rgba(0,0,0,.4);opacity:0;transform:translateY(20px);transition:opacity .4s,transform .4s;pointer-events:none}
 .toast.show{opacity:1;transform:translateY(0)}
-.toast-icon{font-size:1.6rem;flex-shrink:0}
-.toast-text{font-size:.9rem;line-height:1.45}
-.toast-name{font-weight:700;color:var(--text);display:block;font-size:.95rem}
+.toast-icon{font-size:2rem;flex-shrink:0}
+.toast-text{font-size:1rem;line-height:1.45}
+.toast-name{font-weight:700;color:var(--text);display:block;font-size:1.1rem}
 .toast-action{color:var(--muted)}
-.toast-time{color:var(--dim);font-size:.75rem}
+.toast-time{color:var(--dim);font-size:.8rem}
 
 /* ═══ SCROLL TO TOP ═══ */
 .scroll-top{position:fixed;bottom:1.5rem;right:1.5rem;z-index:200;width:42px;height:42px;border-radius:50%;background:var(--pink);color:#fff;border:none;cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(255,45,120,.3);opacity:0;transform:translateY(10px);transition:opacity .3s,transform .3s;pointer-events:none}

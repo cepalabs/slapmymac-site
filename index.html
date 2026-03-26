@@ -749,6 +749,17 @@ footer a:hover { color: var(--muted); }
   </div>
 </footer>
 
+<!-- Toast + Scroll to top (must be before script) -->
+<div class="toast" id="purchaseToast">
+  <span class="toast-icon">🎉</span>
+  <div class="toast-text">
+    <span class="toast-name" id="toastName">Alex M.</span>
+    <span class="toast-action">just purchased SlapMyMac</span><br>
+    <span class="toast-time" id="toastTime">2 min ago</span>
+  </div>
+</div>
+<button class="scroll-top" id="scrollTop" aria-label="Scroll to top">↑</button>
+
 <script>
 /* ── Theme ──────────────────────────────────────────────── */
 const themeBtn = document.querySelector('.theme-toggle');
@@ -847,16 +858,5 @@ window.addEventListener('scroll', () => {
 }, { passive: true });
 scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 </script>
-
-<!-- Toast + Scroll to top -->
-<div class="toast" id="purchaseToast">
-  <span class="toast-icon">🎉</span>
-  <div class="toast-text">
-    <span class="toast-name" id="toastName">Alex M.</span>
-    <span class="toast-action">just purchased SlapMyMac</span><br>
-    <span class="toast-time" id="toastTime">2 min ago</span>
-  </div>
-</div>
-<button class="scroll-top" id="scrollTop" aria-label="Scroll to top">↑</button>
 </body>
 </html>

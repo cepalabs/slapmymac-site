@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SlapMyMac — Your MacBook Has Feelings</title>
+<title>SlapMyMac — Slap Your Mac, It Screams Back | 190+ Sounds</title>
 <meta name="description" content="Slap your MacBook. It yells back. Move the lid — it creaks, revs, plays violin. The only slap app with lid sounds. 190+ sounds, $2.99.">
 <meta property="og:title" content="SlapMyMac — Your MacBook Has Feelings">
 <meta property="og:description" content="Slap your MacBook. It talks back. Move the lid. It makes sounds. $2.99 one-time.">
@@ -12,8 +12,21 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://slapmymac.com/">
 <link rel="icon" type="image/png" href="/icon.png">
+<link rel="apple-touch-icon" href="/icon-180.png">
+<meta name="theme-color" content="#0a0a0b">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"SoftwareApplication","name":"SlapMyMac","url":"https://slapmymac.com","downloadUrl":"https://slapmymac.com/SlapMyMac.dmg","operatingSystem":"macOS 14+","applicationCategory":"EntertainmentApplication","offers":{"@type":"Offer","price":"2.99","priceCurrency":"USD"},"description":"Slap your MacBook and it screams back. The only slap app with lid sounds, screen crack, and USB moaner. 190+ sounds.","image":"https://slapmymac.com/icon.png","author":{"@type":"Organization","name":"CEPALabs"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Will I void my MacBook warranty?","acceptedAnswer":{"@type":"Answer","text":"Probably not. SlapMyMac uses the built-in accelerometer and lid sensor, no hardware mods. If you slap hard enough to crack your screen, that's on you."}},
+{"@type":"Question","name":"Does it work on Intel Macs?","acceptedAnswer":{"@type":"Answer","text":"No. SlapMyMac requires an M1+ MacBook because it reads the built-in accelerometer and lid angle sensor, which aren't available on Intel Macs."}},
+{"@type":"Question","name":"Can I add my own sounds?","acceptedAnswer":{"@type":"Answer","text":"Not yet, but it's on the roadmap. You get 160+ clips across 9 sound packs plus 30+ lid sounds."}},
+{"@type":"Question","name":"Does it drain my battery?","acceptedAnswer":{"@type":"Answer","text":"Barely. SlapMyMac polls the sensors at low frequency and uses less energy than most menu bar apps."}},
+{"@type":"Question","name":"Will it trigger during normal typing?","acceptedAnswer":{"@type":"Answer","text":"No. The detection pipeline uses multiple algorithms that vote on whether a real slap happened. Typing or bumping your desk won't trigger it."}},
+{"@type":"Question","name":"What about lid sounds?","acceptedAnswer":{"@type":"Answer","text":"No slapping needed! Lid sounds respond purely to screen movement. Open, close, or wiggle the lid for creaks, engine sounds, or instruments."}},
+{"@type":"Question","name":"Is there a Windows version?","acceptedAnswer":{"@type":"Answer","text":"No. This is a Mac-only experience. Windows laptops don't have feelings."}}
+]}
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -574,7 +587,7 @@ footer a:hover { color: var(--muted); }
 
 <!-- ═══════════════ NAV ═══════════════ -->
 <nav class="nav">
-  <a href="/" class="nav-brand"><img src="/icon.png" alt="" loading="lazy">SlapMyMac</a>
+  <a href="/" class="nav-brand"><img src="/icon.png" alt="SlapMyMac" loading="lazy">SlapMyMac</a>
   <div class="nav-r">
     <a href="#faq">FAQ</a>
     <a href="/reel.html">Free Reel</a>
@@ -748,6 +761,7 @@ footer a:hover { color: var(--muted); }
 <footer>
   <span>&copy; 2026 CEPALabs SH.P.K.</span>
   <div class="f-links">
+    <a href="/vs-slapmac.html">vs SlapMac</a>
     <a href="/privacy.html">Privacy</a>
     <a href="/terms.html">Terms</a>
     <a href="mailto:hello@cepalabs.com">Contact</a>

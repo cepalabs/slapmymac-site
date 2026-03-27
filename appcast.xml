@@ -6,20 +6,20 @@
     <description>Most recent updates for SlapMyMac</description>
     <language>en</language>
     <item>
-      <title>SlapMyMac 1.3.0</title>
-      <pubDate>Thu, 26 Mar 2026 16:53:33 +0100</pubDate>
-      <sparkle:version>1.3.0</sparkle:version>
-      <sparkle:shortVersionString>1.3.0</sparkle:shortVersionString>
+      <title>SlapMyMac 1.4.0</title>
+      <pubDate>Fri, 27 Mar 2026 21:50:57 +0100</pubDate>
+      <sparkle:version>1.4.0</sparkle:version>
+      <sparkle:shortVersionString>1.4.0</sparkle:shortVersionString>
       <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
       <description><![CDATA[
-        <h2>SlapMyMac 1.3.0</h2>
+        <h2>SlapMyMac 1.4.0</h2>
         <p>Latest update. See slapmymac.com for details.</p>
       ]]></description>
       <enclosure
         url="https://slapmymac.com/SlapMyMac.dmg"
         type="application/octet-stream"
-        sparkle:edSignature="bJQ5Dso5Iyv5k39GgrGbUNZKO26mYGslryAuFT2CH0HDB22MA3Rbg9ytADGFkhQM4YU4mwRu0irFqZj6RxXxBw=="
-        length="33004570"
+        sparkle:edSignature="3VHwTBjazFypH2M1uUMO/7Qjo5MsdBvZzzzIm64H5q4msVKJMbcR19gwJWoR/GoP1zbeG8DrFu9IibualpPNAQ=="
+        length="34611346"
       />
     </item>
   </channel>

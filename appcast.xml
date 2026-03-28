@@ -6,20 +6,24 @@
     <description>Most recent updates for SlapMyMac</description>
     <language>en</language>
     <item>
-      <title>SlapMyMac 1.4.1</title>
-      <pubDate>Fri, 28 Mar 2026 12:55:00 +0100</pubDate>
-      <sparkle:version>1.4.1</sparkle:version>
-      <sparkle:shortVersionString>1.4.1</sparkle:shortVersionString>
+      <title>SlapMyMac 1.4.2</title>
+      <pubDate>Fri, 28 Mar 2026 17:30:00 +0100</pubDate>
+      <sparkle:version>1.4.2</sparkle:version>
+      <sparkle:shortVersionString>1.4.2</sparkle:shortVersionString>
       <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
       <description><![CDATA[
-        <h2>SlapMyMac 1.4.1</h2>
-        <p>Fixed license activation issue. If activation wasn't working, please update and try again.</p>
+        <h2>SlapMyMac 1.4.2</h2>
+        <ul>
+          <li>Fixed license activation issue</li>
+          <li>Fixed onboarding visibility in light mode</li>
+          <li>Improved activation feedback</li>
+        </ul>
       ]]></description>
       <enclosure
         url="https://slapmymac.com/SlapMyMac.dmg"
         type="application/octet-stream"
-        sparkle:edSignature="h6xR13/3jqShbSMYh+I1t7dkabsuKe8i/kBVYGBNXyNIocUKxTXagnX+9XuP7CShg9bDqXUimDCS7FICIkegDw=="
-        length="33914150"
+        sparkle:edSignature="BN7ymwICFgtos3V9wxc8U7FL40GAal1Pfct+VrWJ8mcasrjaX7T5ZYXI/D7ftePIix2SLux1AW4OU/zoAvgPCw=="
+        length="33913348"
       />
     </item>
   </channel>

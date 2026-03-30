@@ -20,7 +20,7 @@
         </ul>
       ]]></description>
       <enclosure
-        url="https://slapmymac.com/SlapMyMac.dmg"
+        url="https://github.com/cepalabs/slapmymac-site/releases/download/v1.4.2/SlapMyMac.dmg"
         type="application/octet-stream"
         sparkle:edSignature="BN7ymwICFgtos3V9wxc8U7FL40GAal1Pfct+VrWJ8mcasrjaX7T5ZYXI/D7ftePIix2SLux1AW4OU/zoAvgPCw=="
         length="33913348"
